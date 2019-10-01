@@ -1,4 +1,5 @@
 const createError = require('http-errors');
+const debug = require('debug')('audience-awakening:application');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -61,7 +62,7 @@ app.use((err, req, res, next) => {
 // Socket communication
 
 // For any connection established:
-io.on('connection', (socket) => console.log('a user connected'));
+io.on('connection', (socket) => debug('a user connected'));
 
 // Segment connections into the three types we support:
 const participants = io.of('/participate');
@@ -86,10 +87,10 @@ var voteCount = {
 // PARTICIPANTS are the main route (/) and is a display for smartphones to be
 // able to vote on open questions.
 participants.on('connection', (socket) => {
-  console.log('participant connected');
+  debug('participant connected');
 
   socket.on('vote', (msg) => {
-    console.log('participant vote for ' + msg);
+    debug('participant vote for ' + msg);
 
     if (voteCount.hasOwnProperty(msg)) {
       voteCount[msg]++;
@@ -103,17 +104,17 @@ participants.on('connection', (socket) => {
 // questions, results, and shutdown notices for the audience on a read-only
 // display on the route (/present)
 presenters.on('connection', (socket) => {
-  console.log('presenter connected')
+  debug('presenter connected')
 });
 
 // MANAGERS (there should only be one, but an ASM may have a backup) display the
 // list of questions, can dispatch instruction slides, open questions, see live
 // vote tallies, close questions, and push results to the presentation screen.
 managers.on('connection', (socket) => {
-  console.log('manager connected');
+  debug('manager connected');
 
   socket.on('present', (msg) => {
-    console.log('manager order to present results');
+    debug('manager order to present results');
     // @TODO: What else happens here? Something should happen to participant displays...
     presenters.emit('present', voteCount);
   });
@@ -125,7 +126,7 @@ managers.on('connection', (socket) => {
       c: 0,
       d: 0
     };
-    console.log('manager order to clear');
+    debug('manager order to clear');
     // @TODO: Need to do something with participants, but probably related to
     // opening and closing a vote. This whole routine should probably change.
     managers.emit('update vote count', voteCount);
