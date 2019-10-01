@@ -1,0 +1,43 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <h2>{{title}}</h2>
+
+  <h3>Question</h3>
+
+  <dl>
+    <dt>A</dt>
+    <dd id="response-a"></dd>
+
+    <dt>B</dt>
+    <dd id="response-b"></dd>
+
+    <dt>C</dt>
+    <dd id="response-c"></dd>
+
+    <dt>D</dt>
+    <dd id="response-d"></dd>
+  </dl>
+{% endblock %}
+
+{% block js %}
+  <script>
+    var socket = io("/present");
+
+    socket.on('present', function(data) {
+      console.log("received order to present findings " + JSON.stringify(data));
+
+      Object.keys(data).forEach(function(key){
+        document.getElementById('response-' + key).innerText = data[key];
+      });
+    });
+
+    socket.on('clear', function(data) {
+      console.log("received order to clear display");
+
+      document.querySelectorAll('dd').forEach(function(el) {
+        el.innerText = null;
+      });
+    });
+  </script>
+{% endblock %}
