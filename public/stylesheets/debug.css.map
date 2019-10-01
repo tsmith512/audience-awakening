@@ -1,9 +1,0 @@
-{
-	"version": 3,
-	"file": "debug.css",
-	"sources": [
-		"debug.scss"
-	],
-	"names": [],
-	"mappings": "AAAA,AAAA,MAAM,CAAC;EACL,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,KAAK;EACb,MAAM,EAAE,cAAc;EACtB,MAAM,EAAE,GAAG,GACZ;;AAED,AAAA,QAAQ,CAAC;EACP,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI,GACb"
-}
