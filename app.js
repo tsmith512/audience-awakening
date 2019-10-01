@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 const app = express();
+const voteCount = require('./vote-count');
 
 // Express Generator splits up the actual Server creation into the separate file
 // bin/www; app.js just exports the Express instance. This is needed to be able
@@ -74,18 +75,6 @@ const presenters = io.of('/present');
 const managers = io.of('/manage');
   // The stage manager's control desk
 
-
-// @TODO: WIP solution to hold this for now.
-// This has to be accessible in lower-scope callbacks and mutable... this seems
-// like not a good way to set this up. It would be great if this could be a
-// self-contained object to handle validation, storage, and reporting.
-var voteCount = {
-  a: 0,
-  b: 0,
-  c: 0,
-  d: 0
-};
-
 // PARTICIPANTS are the main route (/) and is a display for smartphones to be
 // able to vote on open questions.
 participants.on('connection', (socket) => {
@@ -94,11 +83,9 @@ participants.on('connection', (socket) => {
   socket.on('vote', (msg) => {
     debug('participant vote for ' + msg);
 
-    if (voteCount.hasOwnProperty(msg)) {
-      voteCount[msg]++;
-    }
+    voteCount.vote(msg);
 
-    managers.emit('update vote count', voteCount);
+    managers.emit('update vote count', voteCount.report());
   });
 });
 
@@ -118,20 +105,15 @@ managers.on('connection', (socket) => {
   socket.on('present', (msg) => {
     debug('manager order to present results');
     // @TODO: What else happens here? Something should happen to participant displays...
-    presenters.emit('present', voteCount);
+    presenters.emit('present', voteCount.report());
   });
 
   socket.on('clear', (msg) => {
-    voteCount = {
-      a: 0,
-      b: 0,
-      c: 0,
-      d: 0
-    };
     debug('manager order to clear');
+    voteCount.clear();
     // @TODO: Need to do something with participants, but probably related to
     // opening and closing a vote. This whole routine should probably change.
-    managers.emit('update vote count', voteCount);
+    managers.emit('update vote count', voteCount.report());
     presenters.emit('clear', true);
   });
 });
