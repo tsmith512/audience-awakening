@@ -17,7 +17,7 @@
     document.querySelectorAll('button').forEach(function(el){
       el.addEventListener('click', function() {
         socket.emit('vote', this.id);
-        console.log(this.id);
+        console.log("submitted vote " + this.id);
       })
     })
   </script>

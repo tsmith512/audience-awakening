@@ -63,6 +63,8 @@ participants.on('connection', function (socket) {
 
   socket.on('vote', function(msg) {
     console.log('participant vote for ' + msg);
+
+    presenters.emit('update', msg);
   });
 });
 

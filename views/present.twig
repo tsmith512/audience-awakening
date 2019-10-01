@@ -23,5 +23,12 @@
 {% block js %}
   <script>
     var socket = io("/present");
+
+    socket.on('update', function(data) {
+      console.log("received update " + data);
+
+      // @TODO: So this is a horrible way to do this.
+      document.getElementById('response-' + data).innerText++
+    })
   </script>
 {% endblock %}
