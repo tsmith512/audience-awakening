@@ -51,12 +51,24 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-io.on('connection', function(socket){
+io.on('connection', function (socket) {
   console.log('a user connected');
-
-  socket.on('client response', function(msg) {
-    console.log('client vote for ' + msg);
-  })
 });
+
+var participants = io.of('/participate');
+var presenters = io.of('/present');
+
+participants.on('connection', function (socket) {
+  console.log('participant connected');
+
+  socket.on('vote', function(msg) {
+    console.log('participant vote for ' + msg);
+  });
+});
+
+participants.on('connection', function (socket) {
+  console.log('presenter connected');
+});
+
 
 module.exports = app;

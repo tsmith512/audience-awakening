@@ -1,0 +1,27 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <h2>{{title}}</h2>
+
+  <h3>Question</h3>
+
+  <dl>
+    <dt>A</dt>
+    <dd id="response-a">0</dd>
+
+    <dt>B</dt>
+    <dd id="response-b">0</dd>
+
+    <dt>C</dt>
+    <dd id="response-c">0</dd>
+
+    <dt>D</dt>
+    <dd id="response-d">0</dd>
+  </dl>
+{% endblock %}
+
+{% block js %}
+  <script>
+    var socket = io("/present");
+  </script>
+{% endblock %}

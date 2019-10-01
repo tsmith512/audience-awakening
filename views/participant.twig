@@ -12,11 +12,11 @@
 
 {% block js %}
   <script>
-    var socket = io();
+    var socket = io("/participate");
 
     document.querySelectorAll('button').forEach(function(el){
       el.addEventListener('click', function() {
-        socket.emit('client response', this.id);
+        socket.emit('vote', this.id);
         console.log(this.id);
       })
     })
