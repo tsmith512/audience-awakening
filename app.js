@@ -57,20 +57,51 @@ io.on('connection', function (socket) {
 
 var participants = io.of('/participate');
 var presenters = io.of('/present');
+var managers = io.of('/manage');
+
+// @TODO: WIP solution to hold this for now
+var voteCount = {
+  a: 0,
+  b: 0,
+  c: 0,
+  d: 0
+};
 
 participants.on('connection', function (socket) {
   console.log('participant connected');
 
-  socket.on('vote', function(msg) {
+  socket.on('vote', function (msg) {
     console.log('participant vote for ' + msg);
 
-    presenters.emit('update', msg);
+    if (voteCount.hasOwnProperty(msg)) {
+      voteCount[msg]++;
+    }
+
+    managers.emit('update vote count', voteCount);
   });
 });
 
-participants.on('connection', function (socket) {
+presenters.on('connection', function (socket) {
   console.log('presenter connected');
 });
 
+managers.on('connection', function (socket) {
+  console.log('manager connected');
+
+  socket.on('present', function (msg) {
+    presenters.emit('present', voteCount);
+  });
+
+  socket.on('clear', function (msg) {
+    voteCount = {
+      a: 0,
+      b: 0,
+      c: 0,
+      d: 0
+    };
+    managers.emit('update vote count', voteCount);
+    presenters.emit('clear', true);
+  });
+});
 
 module.exports = app;
