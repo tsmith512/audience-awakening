@@ -1,3 +1,5 @@
+'use strict';
+
 const createError = require('http-errors');
 const debug = require('debug')('audience-awakening:application');
 const express = require('express');
