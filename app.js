@@ -5,8 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var participantRouter = require('./routes/index');
+var presentationRouter = require('./routes/presentation');
+var adminRouter = require('./routes/admin');
+var debugRouter = require('./routes/debug');
 
 var app = express();
 
@@ -26,8 +28,10 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', participantRouter);
+app.use('/present', presentationRouter);
+app.use('/sm', adminRouter);
+app.use('/debug', debugRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
