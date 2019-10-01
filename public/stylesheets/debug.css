@@ -4,4 +4,8 @@ iframe {
   border: 1px solid #CCC;
   margin: 1em; }
 
+textarea {
+  width: 80vw;
+  height: 80vh; }
+
 /*# sourceMappingURL=debug.css.map */
