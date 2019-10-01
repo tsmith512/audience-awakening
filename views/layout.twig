@@ -12,9 +12,9 @@
       </main>
     </div>
   </body>
-  {% block js %}{% endblock %}
   <script src="/socket.io/socket.io.js"></script>
   <script>
     var socket = io();
   </script>
+  {% block js %}{% endblock %}
 </html>

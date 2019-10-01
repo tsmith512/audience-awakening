@@ -53,6 +53,10 @@ app.use(function(err, req, res, next) {
 
 io.on('connection', function(socket){
   console.log('a user connected');
+
+  socket.on('client response', function(msg) {
+    console.log('client vote for ' + msg);
+  })
 });
 
 module.exports = app;
