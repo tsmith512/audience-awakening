@@ -17,8 +17,15 @@ module.exports = {
   },
 
   vote: function(key) {
-    debug('vote added for ' + key);
-    this.counts[key]++;
+    // To validate user-submitted data, the "key" from the client socket.emit
+    // should match a valid key to vote for in this.counts.
+    if (this.counts.hasOwnProperty(key)) {
+      debug('vote added for ' + key);
+      this.counts[key]++;
+    }
+    else {
+      debug('vote submitted for invalid key: ' + JSON.stringify(key));
+    }
   },
 
   clear: function() {
