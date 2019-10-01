@@ -5,10 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 
-var participantRouter = require('./routes/index');
-var presentationRouter = require('./routes/presentation');
-var adminRouter = require('./routes/admin');
-var debugRouter = require('./routes/debug');
 
 var app = express();
 var io = require('socket.io')();
@@ -30,10 +26,25 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', participantRouter);
-app.use('/present', presentationRouter);
-app.use('/sm', adminRouter);
-app.use('/debug', debugRouter);
+app.get('/', function(req, res, next) {
+  res.render('participant', { title: 'Participant Display' });
+});
+
+app.get('/present', function(req, res, next) {
+  res.render('present', { title: 'Projector Display' });
+});
+
+app.get('/sm', function(req, res, next) {
+  res.render('admin', { title: 'Stage Manager Display' });
+});
+
+app.get('/debug', function(req, res, next) {
+  res.render('debug', { title: '3-Up Testing Display' });
+});
+
+app.get('/debug/data', function(req, res, next) {
+  res.render('data-dump', { title: 'Data Dump' });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
