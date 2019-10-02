@@ -9,6 +9,7 @@ const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 const app = express();
 const voteCount = require('./vote-count');
+const voteQuestions = require('./vote-questions');
 
 // Express Generator splits up the actual Server creation into the separate file
 // bin/www; app.js just exports the Express instance. This is needed to be able
@@ -45,6 +46,8 @@ app.get('/sm', (req, res, next) => res.render('admin', { title: 'Stage Manager D
 app.get('/debug', (req, res, next) => res.render('debug', { title: '3-Up Testing Display' }));
 
 app.get('/debug/data', (req, res, next) => res.render('data-dump', { title: 'Data Dump' }));
+
+app.get('/api/questions', (req, res, next) => res.json(voteQuestions.listQuestions()));
 
 // 404 Handler (i.e. request didn't match a Socket, any of the above routes, or
 // something in the static handler at /public)
