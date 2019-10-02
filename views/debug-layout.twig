@@ -3,15 +3,18 @@
   <head>
     <title>{{ title }}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/debug.css' />
   </head>
   <body>
     <div class="container">
-      <header><h1>Live Survey Demo</h1></header>
+      <header>
+        <h1>{{title}}</h1>
+        <a href="/debug">3-up</a> | <a href="/debug/data">Data dump</a>
+      </header>
       <main>
         {% block body %}{% endblock %}
       </main>
     </div>
   </body>
-  <script src="/socket.io/socket.io.js"></script>
   {% block js %}{% endblock %}
 </html>
