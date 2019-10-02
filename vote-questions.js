@@ -31,6 +31,37 @@ module.exports = {
   },
 
   getQuestion: function (index) {
-    return this.questions[index] || false;
+    index = index || this.active;
+    if (!index) {
+      return false;
+    }
+    else {
+      return {
+        key: index,
+        ...this.questions[index]
+      };
+    }
+  },
+
+  // This returns exactly what getQuestion would return but without the correct
+  // answer identified.
+  getQuestionPublic: function (index) {
+    index = index || this.active;
+    const q = this.getQuestion(index);
+
+    return {
+      key: index,
+      question: q.question,
+      responses: q.responses
+    };
+  },
+
+  activate: function (index) {
+    if (this.questions.hasOwnProperty(index)) {
+      this.active = index;
+      return this.getQuestion(this.active);
+    } else {
+      return false;
+    }
   }
 }

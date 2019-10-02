@@ -107,6 +107,18 @@ managers.on('connection', (socket) => {
 
   socket.on('open question', (msg) => {
     debug('manager ordered to open question ' + msg);
+    voteQuestions.activate(msg) || debug('invalid question called');
+
+    // Clear the vote count
+    voteCount.clear();
+    // Send the zeroed count to the SM deck. @TODO: This happens on any vote
+    // clear, this should be an event handler because it'll also unlock
+    // participants and such.
+    managers.emit('update vote count', voteCount.report());
+
+    // Notify the presenters and participants that a new question is open
+    presenters.emit('new question', voteQuestions.getQuestionPublic());
+    participants.emit('new question', voteQuestions.getQuestionPublic());
   })
 
   socket.on('present', (msg) => {
@@ -122,6 +134,7 @@ managers.on('connection', (socket) => {
     // opening and closing a vote. This whole routine should probably change.
     managers.emit('update vote count', voteCount.report());
     presenters.emit('clear', true);
+    participants.emit('clear', true);
   });
 });
 
