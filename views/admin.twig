@@ -21,6 +21,23 @@
     <dd id="response-d">0</dd>
   </dl>
 
+  <h4>Questions</h4>
+  <!-- @TODO: just a static list at first -->
+  <table>
+    <thead>
+      <th>Status</th>
+      <th>Question</th>
+    </thead>
+    <tbody>
+      {% for question in questions %}
+        <tr>
+          <td><button class="question-trigger" id="question-{{ loop.index0 }}" data-index="{{ loop.index0 }}">{{ loop.index0 }}</button></td>
+          <td>{{ question }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
   <h4>Actions</h4>
   <button id="present">Present Results</button>
   <button id="clear">Clear and Reset</button>
@@ -31,7 +48,7 @@
     var socket = io("/manage");
 
     socket.on('update vote count', function(data) {
-      console.log("received update " + JSON.stringify(data));
+      console.log('received update ' + JSON.stringify(data));
 
       // @TODO: So this is a horrible way to do this.
       document.getElementById('response-a').innerText = data.a;
@@ -47,5 +64,13 @@
     document.getElementById('clear').addEventListener('click', function() {
       socket.emit('clear', true);
     });
+
+    document.querySelectorAll('.question-trigger').forEach(function(el) {
+      el.addEventListener('click', function() {
+        console.log('opening question ' + this.dataset.index);
+        socket.emit('open question', this.dataset.index);
+      });
+    })
+
   </script>
 {% endblock %}

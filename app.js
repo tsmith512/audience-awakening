@@ -41,7 +41,7 @@ app.get('/', (req, res, next) => res.render('participant', { title: 'Participant
 
 app.get('/present', (req, res, next) => res.render('present', { title: 'Projector Display' }));
 
-app.get('/sm', (req, res, next) => res.render('admin', { title: 'Stage Manager Display' }));
+app.get('/sm', (req, res, next) => res.render('admin', { title: 'Stage Manager Display', questions: voteQuestions.listQuestions() }));
 
 app.get('/debug', (req, res, next) => res.render('debug', { title: '3-Up Testing Display' }));
 
@@ -104,6 +104,10 @@ presenters.on('connection', (socket) => {
 // vote tallies, close questions, and push results to the presentation screen.
 managers.on('connection', (socket) => {
   debug('manager connected');
+
+  socket.on('open question', (msg) => {
+    debug('manager ordered to open question ' + msg);
+  })
 
   socket.on('present', (msg) => {
     debug('manager order to present results');
