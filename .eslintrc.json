@@ -1,0 +1,24 @@
+{
+  "extends": "airbnb-base",
+  "overrides": [
+    {
+      "files": ["public/js/*.js"],
+      "extends": "airbnb-base/legacy",
+      "globals": {
+        "io": true
+      },
+      "rules": {
+        // @TODO: Debugging in build, need to strike this later.
+        "no-console": "off",
+
+        // These scripts are going out to browsers as-is, need to turn off ES6 requirements
+        "func-names": "off",
+        "prefer-arrow-callback": "off",
+        "prefer-template": "off",
+        "no-param-reassign": ["error", { "props": false }], // Allow simple manipulation of el.innerText
+        "strict": "off", // i'm not using a bundler/packer, these go as-is, and they aren't modules
+        "wrap-iife": ["error", "inside"]
+      }
+    }
+  ]
+}

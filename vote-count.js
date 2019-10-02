@@ -1,5 +1,3 @@
-'use strict';
-
 const debug = require('debug')('audience-awakening:vote');
 
 module.exports = {
@@ -9,27 +7,28 @@ module.exports = {
     a: 0,
     b: 0,
     c: 0,
-    d: 0
+    d: 0,
   },
 
-  report: function() {
+  report() {
     return this.counts;
   },
 
-  vote: function(key) {
+  vote(key) {
     // To validate user-submitted data, the "key" from the client socket.emit
     // should match a valid key to vote for in this.counts.
-    if (this.counts.hasOwnProperty(key)) {
-      debug('vote added for ' + key);
-      this.counts[key]++;
-    }
-    else {
-      debug('vote submitted for invalid key: ' + JSON.stringify(key));
+    if (Object.prototype.hasOwnProperty.call(this.counts, key)) {
+      debug(`vote added for ${key}`);
+      this.counts[key] += 1;
+    } else {
+      debug(`vote submitted for invalid key: ${JSON.stringify(key)}`);
     }
   },
 
-  clear: function() {
+  clear() {
     debug('vote counts reset');
-    Object.keys(this.counts).forEach((key) => this.counts[key] = 0);
-  }
-}
+    Object.keys(this.counts).forEach((key) => {
+      this.counts[key] = 0;
+    });
+  },
+};
