@@ -1,3 +1,6 @@
+const debug = require('debug')('audience-awakening:vote');
+const EventEmitter = require('events');
+
 module.exports = {
   active: false,
 
@@ -53,8 +56,17 @@ module.exports = {
   activate(index) {
     if (Object.prototype.hasOwnProperty.call(this.questions, index)) {
       this.active = index;
+      debug('vote question opened');
+      this.events.emit('activate', this.getQuestion(this.active));
       return this.getQuestion(this.active);
     }
     return false;
   },
+
+  deactivate() {
+    this.index = false;
+    this.events.emit('deactivate');
+  },
+
+  events: new EventEmitter(),
 };

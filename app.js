@@ -65,9 +65,6 @@ app.use((err, req, res) => {
 
 // Socket communication
 
-// For any connection established:
-io.on('connection', () => debug('a user connected'));
-
 // Segment connections into the three types we support:
 const participants = io.of('/participate');
 // ^ Audience members who will be voting
@@ -81,6 +78,10 @@ const managers = io.of('/manage');
 participants.on('connection', (socket) => {
   debug('participant connected');
 
+  if (voteQuestions.active) {
+    socket.emit('new question', voteQuestions.getQuestionPublic());
+  }
+
   socket.on('vote', (msg) => {
     debug(`participant vote for ${msg}`);
 
@@ -93,7 +94,15 @@ participants.on('connection', (socket) => {
 // PRESENTERS (there will probably only be one at a time) display intros,
 // questions, results, and shutdown notices for the audience on a read-only
 // display on the route (/present)
-presenters.on('connection', () => debug('presenter connected'));
+presenters.on('connection', (socket) => {
+  debug('presenter connected');
+
+  if (voteQuestions.active) {
+    socket.emit('new question', voteQuestions.getQuestionPublic());
+  }
+
+  socket.emit('update vote count', voteCount.report());
+});
 
 // MANAGERS (there should only be one, but an ASM may have a backup) display the
 // list of questions, can dispatch instruction slides, open questions, see live
@@ -101,18 +110,16 @@ presenters.on('connection', () => debug('presenter connected'));
 managers.on('connection', (socket) => {
   debug('manager connected');
 
+
+  if (voteQuestions.active) {
+    socket.emit('new question', voteQuestions.getQuestion());
+  }
+  socket.emit('update vote count', voteCount.report());
+
   socket.on('open question', (msg) => {
     debug(`manager ordered to open question ${msg}`);
-    voteQuestions.activate(msg);
-    // @TODO: The way I did error handling for ^^ threw a linting error and was
-    // kinda messy. Need a different way.
-
-    // Clear the vote count
     voteCount.clear();
-
-    // Notify the presenters and participants that a new question is open
-    presenters.emit('new question', voteQuestions.getQuestionPublic());
-    participants.emit('new question', voteQuestions.getQuestionPublic());
+    voteQuestions.activate(msg);
   });
 
   socket.on('present', () => {
@@ -124,10 +131,18 @@ managers.on('connection', (socket) => {
   socket.on('clear', () => {
     debug('manager order to clear');
     voteCount.clear();
+    voteQuestions.deactivate();
   });
 });
 
 // Events for vote counts and questions
+
+voteQuestions.events.on('activate', (question) => {
+  // Notify all kinds of clients that a new question is open
+  managers.emit('new question', question);
+  presenters.emit('new question', voteQuestions.getQuestionPublic());
+  participants.emit('new question', voteQuestions.getQuestionPublic());
+});
 
 voteCount.events.on('clear', () => {
   managers.emit('update vote count', voteCount.report());

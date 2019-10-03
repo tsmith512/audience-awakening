@@ -3,14 +3,26 @@
 
   var socket = io('/manage');
 
+  socket.on('new question', function (data) {
+    document.querySelectorAll('.question-trigger').forEach(function (element) {
+      element.classList.remove('active');
+    });
+
+    document.getElementById('question-' + data.key).classList.add('active');
+  });
+
   socket.on('update vote count', function (data) {
     console.log('received update ' + JSON.stringify(data));
 
-    // @TODO: So this is a horrible way to do this.
-    document.getElementById('response-a').innerText = data.a;
-    document.getElementById('response-b').innerText = data.b;
-    document.getElementById('response-c').innerText = data.c;
-    document.getElementById('response-d').innerText = data.d;
+    document.querySelectorAll('dd').forEach(function (el) {
+      el.innerText = data[el.id.slice(-1)];
+    });
+  });
+
+  socket.on('clear', function () {
+    document.querySelectorAll('.question-trigger').forEach(function (element) {
+      element.classList.remove('active');
+    });
   });
 
   document.getElementById('present').addEventListener('click', function () {
