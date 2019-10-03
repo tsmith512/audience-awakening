@@ -9,6 +9,9 @@
     // Put up the question text as the slide title:
     document.querySelector('h3').innerText = data.question;
 
+    // Show the voting buttons:
+    document.getElementById('voting-buttons').classList.add('active');
+
     // Label the buttons:
     document.querySelectorAll('button').forEach(function (el) {
       el.innerText = data.responses[el.id];
@@ -16,6 +19,7 @@
   });
 
   socket.on('clear', function () {
+    document.getElementById('voting-buttons').classList.remove('active');
     document.querySelectorAll('h3, button').forEach(function (el) {
       el.innerText = el.id.length ? el.id.toUpperCase() : null;
     });

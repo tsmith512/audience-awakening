@@ -146,6 +146,7 @@ voteQuestions.events.on('activate', (question) => {
 
 voteCount.events.on('clear', () => {
   managers.emit('update vote count', voteCount.report());
+  managers.emit('clear', true);
   presenters.emit('clear', true);
   participants.emit('clear', true);
 });

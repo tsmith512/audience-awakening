@@ -52,3 +52,11 @@ body {
 .question-trigger.active {
     background: green;
 }
+
+#voting-buttons {
+    display: none;
+
+    &.active {
+        display: block;
+    }
+}
