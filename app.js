@@ -11,6 +11,7 @@ const io = require('socket.io')();
 
 const voteCount = require('./vote-count');
 const voteQuestions = require('./vote-questions');
+const voteStatus = require('./vote-status').init();
 
 // Express Generator splits up the actual Server creation into the separate file
 // bin/www; app.js just exports the Express instance. This is needed to be able
@@ -73,14 +74,20 @@ const presenters = io.of('/present');
 const managers = io.of('/manage');
 // ^ The stage manager's control desk
 
+const connectionStartup = (socket) => {
+  socket.emit('status', voteStatus.get());
+
+  if (voteQuestions.active) {
+    socket.emit('new question', voteQuestions.getQuestionPublic());
+  }
+};
+
 // PARTICIPANTS are the main route (/) and is a display for smartphones to be
 // able to vote on open questions.
 participants.on('connection', (socket) => {
   debug('participant connected');
 
-  if (voteQuestions.active) {
-    socket.emit('new question', voteQuestions.getQuestionPublic());
-  }
+  connectionStartup(socket);
 
   socket.on('vote', (msg) => {
     debug(`participant vote for ${msg}`);
@@ -97,11 +104,13 @@ participants.on('connection', (socket) => {
 presenters.on('connection', (socket) => {
   debug('presenter connected');
 
-  if (voteQuestions.active) {
-    socket.emit('new question', voteQuestions.getQuestionPublic());
-  }
+  connectionStartup(socket);
 
   socket.emit('update vote count', voteCount.report());
+
+  if (voteStatus.get() == "results") {
+    socket.emit('results', voteCount.report());
+  }
 });
 
 // MANAGERS (there should only be one, but an ASM may have a backup) display the
@@ -110,45 +119,63 @@ presenters.on('connection', (socket) => {
 managers.on('connection', (socket) => {
   debug('manager connected');
 
+  connectionStartup(socket);
 
-  if (voteQuestions.active) {
-    socket.emit('new question', voteQuestions.getQuestion());
-  }
   socket.emit('update vote count', voteCount.report());
 
   socket.on('open question', (msg) => {
     debug(`manager ordered to open question ${msg}`);
-    voteCount.clear();
     voteQuestions.activate(msg);
   });
 
-  socket.on('present', () => {
-    debug('manager order to present results');
-    // @TODO: What else happens here? Something should happen to participant displays...
-    presenters.emit('present', voteCount.report());
+  socket.on('status', (msg) => {
+    debug(`manager ordered to advance game status to ${msg}`);
+    voteStatus.set(msg);
   });
 
-  socket.on('clear', () => {
-    debug('manager order to clear');
-    voteCount.clear();
-    voteQuestions.deactivate();
-  });
+  // All other manager buttons are status changes, they are handled in the event
+  // handler below.
 });
 
 // Events for vote counts and questions
 
+voteStatus.events.on('state change', (previous, next) => {
+  managers.emit('status', next);
+  presenters.emit('status', next);
+  participants.emit('status', next);
+
+  if (next == 'close') {
+    debug('status change to close')
+    voteCount.clear();
+    voteQuestions.deactivate();
+  }
+
+  if (next == 'results') {
+    presenters.emit('results', voteCount.report());
+  }
+});
+
 voteQuestions.events.on('activate', (question) => {
+  // Reset the vote counts
+  voteCount.clear();
+
+  // Set game status
+  voteStatus.set('vote');
+
   // Notify all kinds of clients that a new question is open
   managers.emit('new question', question);
   presenters.emit('new question', voteQuestions.getQuestionPublic());
   participants.emit('new question', voteQuestions.getQuestionPublic());
 });
 
+voteQuestions.events.on('deactivate', () => {
+  managers.emit('clear question');
+  presenters.emit('clear question');
+  participants.emit('clear question');
+});
+
 voteCount.events.on('clear', () => {
   managers.emit('update vote count', voteCount.report());
-  managers.emit('clear', true);
-  presenters.emit('clear', true);
-  participants.emit('clear', true);
 });
 
 module.exports = app;

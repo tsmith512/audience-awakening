@@ -1,7 +1,14 @@
 (function () {
   'use strict';
 
+  // Initial status
+  document.getElementById('results').disabled = true;
+
   var socket = io('/manage');
+
+  socket.on('status', function (data) {
+    document.querySelector('body').className = 'status-' + data;
+  });
 
   socket.on('new question', function (data) {
     document.querySelectorAll('.question-trigger').forEach(function (element) {
@@ -9,6 +16,16 @@
     });
 
     document.getElementById('question-' + data.key).classList.add('active');
+
+    document.getElementById('results').disabled = false;
+  });
+
+  socket.on('clear question', function () {
+    document.querySelectorAll('.question-trigger').forEach(function (element) {
+      element.classList.remove('active');
+    });
+
+    document.getElementById('results').disabled = true;
   });
 
   socket.on('update vote count', function (data) {
@@ -25,12 +42,24 @@
     });
   });
 
-  document.getElementById('present').addEventListener('click', function () {
-    socket.emit('present', true);
+  document.getElementById('preshow').addEventListener('click', function () {
+    socket.emit('status', 'preshow');
   });
 
-  document.getElementById('clear').addEventListener('click', function () {
-    socket.emit('clear', true);
+  document.getElementById('intro').addEventListener('click', function () {
+    socket.emit('status', 'intro');
+  });
+
+  document.getElementById('results').addEventListener('click', function () {
+    socket.emit('status', 'results');
+  });
+
+  document.getElementById('close').addEventListener('click', function () {
+    socket.emit('status', 'close');
+  });
+
+  document.getElementById('postshow').addEventListener('click', function () {
+    socket.emit('status', 'postshow');
   });
 
   document.querySelectorAll('.question-trigger').forEach(function (el) {

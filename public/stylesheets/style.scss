@@ -49,14 +49,11 @@ body {
   font-size: calc(10px + 2vmin);
 }
 
-.question-trigger.active {
-    background: green;
-}
-
-#voting-buttons {
-    display: none;
-
-    &.active {
-        display: block;
-    }
-}
+// Here's a really cheap shot to pull this up.
+.status-dependent { display: none; }
+.status-preshow .preshow { display: block; }
+.status-intro .intro { display: block; }
+.status-vote .vote { display: block; }
+.status-results .results { display: block; }
+.status-close .close { display: block; }
+.status-postshow .postshow { display: block; }

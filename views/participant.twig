@@ -1,15 +1,29 @@
 {% extends 'layout.twig' %}
 
+{% block css %}
+<link rel='stylesheet' href='/stylesheets/participants.css' />
+{% endblock %}
+
+
 {% block body %}
-  <h2>{{title}}</h2>
+  <div class="status-dependent preshow">Preshow: You joined the application, we'll tell you when to use it during the show.</div>
+  <div class="status-dependent intro">Intro: This is a status we may not actually need</div>
+  <div class="status-dependent vote">Vote: A question has been opened and you can vote now</div>
+  <div class="status-dependent results">Results: The question is closed and you can see the results now</div>
+  <div class="status-dependent close">Close: Put away your phone</div>
+  <div class="status-dependent postshow">Postshow: Thank you for coming to the show!</div>
 
-  <h3>Question</h3>
+  <div class="status-dependent intro vote results">
+    <h2>{{title}}</h2>
 
-  <div id="voting-buttons">
-    <button id="a">A</button>
-    <button id="b">B</button>
-    <button id="c">C</button>
-    <button id="d">D</button>
+    <h3>Question</h3>
+
+    <div id="voting-buttons" class="status-dependent vote">
+      <button id="a">A</button>
+      <button id="b">B</button>
+      <button id="c">C</button>
+      <button id="d">D</button>
+    </div>
   </div>
 {% endblock %}
 

@@ -1,35 +1,60 @@
 {% extends 'layout.twig' %}
 
+{% block css %}
+<link rel='stylesheet' href='/stylesheets/presenters.css' />
+{% endblock %}
+
 {% block body %}
+  <div class="status-dependent preshow">Preshow: You joined the application, we'll tell you when to use it during the show.</div>
+  <div class="status-dependent intro">Intro: This is a status we may not actually need</div>
+  <div class="status-dependent vote">Vote: A question has been opened and you can vote now</div>
+  <div class="status-dependent results">Results: The question is closed and you can see the results now</div>
+  <div class="status-dependent close">Close: Put away your phone</div>
+  <div class="status-dependent postshow">Postshow: Thank you for coming to the show!</div>
+
   <h2>{{title}}</h2>
 
-  <h3>Question</h3>
+  <div class="status-dependent preshow intro">
+    <h3>Intro</h3>
+  </div>
 
-  <dl>
-    <dt>A</dt>
-    <dd>
-      <span class="response-option" id="response-a"></span>
-      <span class="results-display" id="results-a"></span>
-    </dd>
+  <div class="status-dependent intro vote results">
+    <h3 id="question-text">Question</h3>
 
-    <dt>B</dt>
-    <dd>
-      <span class="response-option" id="response-b"></span>
-      <span class="results-display" id="results-b"></span>
-    </dd>
+    <dl>
+      <dt>A</dt>
+      <dd>
+        <span class="response-option" id="response-a"></span>
+        <span class="results-display" id="results-a"></span>
+      </dd>
 
-    <dt>C</dt>
-    <dd>
-      <span class="response-option" id="response-c"></span>
-      <span class="results-display" id="results-c"></span>
-    </dd>
+      <dt>B</dt>
+      <dd>
+        <span class="response-option" id="response-b"></span>
+        <span class="results-display" id="results-b"></span>
+      </dd>
 
-    <dt>D</dt>
-    <dd>
-      <span class="response-option" id="response-d"></span>
-      <span class="results-display" id="results-d"></span>
-    </dd>
-  </dl>
+      <dt>C</dt>
+      <dd>
+        <span class="response-option" id="response-c"></span>
+        <span class="results-display" id="results-c"></span>
+      </dd>
+
+      <dt>D</dt>
+      <dd>
+        <span class="response-option" id="response-d"></span>
+        <span class="results-display" id="results-d"></span>
+      </dd>
+    </dl>
+  </div>
+
+  <div class="status-dependent close">
+    <h3>Voting Closed</h3>
+  </div>
+
+  <div class="status-dependent postshow">
+    <h3>Voting Closed</h3>
+  </div>
 {% endblock %}
 
 {% block js %}
