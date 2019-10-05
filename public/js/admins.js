@@ -17,11 +17,19 @@
 
     document.getElementById('question-' + data.key).classList.add('active');
 
+    document.querySelectorAll('.response-value').forEach(function (el) {
+      el.innerText = data.responses[el.id.slice(-1)];
+    });
+
     document.getElementById('results').disabled = false;
   });
 
   socket.on('clear question', function () {
     document.querySelectorAll('.question-trigger').forEach(function (element) {
+      element.classList.remove('active');
+    });
+
+    document.querySelectorAll('.response-value, .vote-count').forEach(function (element) {
       element.classList.remove('active');
     });
 
@@ -31,7 +39,7 @@
   socket.on('update vote count', function (data) {
     console.log('received update ' + JSON.stringify(data));
 
-    document.querySelectorAll('dd').forEach(function (el) {
+    document.querySelectorAll('.vote-count').forEach(function (el) {
       el.innerText = data[el.id.slice(-1)];
     });
   });

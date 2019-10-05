@@ -5,21 +5,23 @@
 {% endblock %}
 
 {% block body %}
-  <div class="status-dependent preshow">Preshow: You joined the application, we'll tell you when to use it during the show.</div>
-  <div class="status-dependent intro">Intro: This is a status we may not actually need</div>
-  <div class="status-dependent vote">Vote: A question has been opened and you can vote now</div>
-  <div class="status-dependent results">Results: The question is closed and you can see the results now</div>
-  <div class="status-dependent close">Close: Put away your phone</div>
-  <div class="status-dependent postshow">Postshow: Thank you for coming to the show!</div>
+  <div class="fpo-overlay status-dependent preshow">Preshow: You joined the application, we'll tell you when to use it during the show.</div>
+  <div class="fpo-overlay status-dependent intro">Intro: This is a status we may not actually need</div>
+  <div class="fpo-overlay status-dependent vote">Vote: A question has been opened and you can vote now</div>
+  <div class="fpo-overlay status-dependent results">Results: The question is closed and you can see the results now</div>
+  <div class="fpo-overlay status-dependent close">Close: Put away your phone</div>
+  <div class="fpo-overlay status-dependent postshow">Postshow: Thank you for coming to the show!</div>
 
-  <h2>{{title}}</h2>
+  <section class="status-dependent preshow intro">
+    <h1>Preshow</h1>
+  </section>
 
-  <div class="status-dependent preshow intro">
-    <h3>Intro</h3>
-  </div>
+  <section class="status-dependent preshow intro">
+    <h1>Intro</h1>
+  </section>
 
-  <div class="status-dependent intro vote results">
-    <h3 id="question-text">Question</h3>
+  <section class="status-dependent intro vote results">
+    <h1 id="question-text">Question</h1>
 
     <dl>
       <dt>A</dt>
@@ -46,15 +48,17 @@
         <span class="results-display" id="results-d"></span>
       </dd>
     </dl>
-  </div>
+  </section>
 
-  <div class="status-dependent close">
-    <h3>Voting Closed</h3>
-  </div>
+  <section class="status-dependent close">
+    <h1>Placeholder Language</h1>
+    <p>Put yer phones up until next time!</p>
+  </section>
 
-  <div class="status-dependent postshow">
-    <h3>Voting Closed</h3>
-  </div>
+  <section class="status-dependent postshow">
+    <h1>Spring Awakening</h1>
+    <p>Thank you for joining us for this performance.</p>
+  </section>
 {% endblock %}
 
 {% block js %}

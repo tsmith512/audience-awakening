@@ -5,37 +5,24 @@
 {% endblock %}
 
 {% block body %}
-  <div class="status-dependent preshow">Preshow: You joined the application, we'll tell you when to use it during the show.</div>
-  <div class="status-dependent intro">Intro: This is a status we may not actually need</div>
-  <div class="status-dependent vote">Vote: A question has been opened and you can vote now</div>
-  <div class="status-dependent results">Results: The question is closed and you can see the results now</div>
-  <div class="status-dependent close">Close: Put away your phone</div>
-  <div class="status-dependent postshow">Postshow: Thank you for coming to the show!</div>
+  <div class="fpo-overlay status-dependent preshow">Preshow: You joined the application, we'll tell you when to use it during the show.</div>
+  <div class="fpo-overlay status-dependent intro">Intro: This is a status we may not actually need</div>
+  <div class="fpo-overlay status-dependent vote">Vote: A question has been opened and you can vote now</div>
+  <div class="fpo-overlay status-dependent results">Results: The question is closed and you can see the results now</div>
+  <div class="fpo-overlay status-dependent close">Close: Put away your phone</div>
+  <div class="fpo-overlay status-dependent postshow">Postshow: Thank you for coming to the show!</div>
 
-  <h2>{{title}}</h2>
+  <h1>Stage Manager Deck</h1>
 
-  <button id="preshow">Preshow info</button>
-  <button id="intro">Intro a question</button>
+  <h2>Presets &mdash; Before</h2>
 
-  <h3>Question</h3>
+  <div class="flex">
+    <button id="preshow" class="highlight-preshow">Preshow</button>
+    <button id="intro" class="highlight-intro">Intro information</button>
+  </div>
 
+  <h2>Questions</h2>
 
-  <h4>Vote Tallies</h4>
-  <dl>
-    <dt>A</dt>
-    <dd id="response-a">0</dd>
-
-    <dt>B</dt>
-    <dd id="response-b">0</dd>
-
-    <dt>C</dt>
-    <dd id="response-c">0</dd>
-
-    <dt>D</dt>
-    <dd id="response-d">0</dd>
-  </dl>
-
-  <h4>Questions</h4>
   <!-- @TODO: just a static list at first -->
   <table>
     <thead>
@@ -52,10 +39,45 @@
     </tbody>
   </table>
 
-  <h4>Actions</h4>
-  <button id="results">Present Results</button>
-  <button id="close">Close Question</button>
-  <button id="postshow">Postshow</button>
+  <h2>Vote Tallies</h2>
+  <table>
+    <thead>
+      <th>Option</th>
+      <th>Answer</th>
+      <th>Votes</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>A</td>
+        <td class="response-value" id="responase-a"></td>
+        <td class="vote-count" id="votes-a"></td>
+      </tr>
+      <tr>
+        <td>B</td>
+        <td class="response-value" id="responase-b"></td>
+        <td class="vote-count" id="votes-b"></td>
+      </tr>
+      <tr>
+        <td>C</td>
+        <td class="response-value" id="responase-c"></td>
+        <td class="vote-count" id="votes-c"></td>
+      </tr>
+      <tr>
+        <td>D</td>
+        <td class="response-value" id="responase-d"></td>
+        <td class="vote-count" id="votes-d"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Presets &mdash; After</h2>
+
+  <div class="flex">
+    <button id="results" class="highlight-results">Present Results</button>
+    <button id="close" class="highlight-close">Close Question</button>
+    <button id="postshow" class="highlight-postshow">Postshow</button>
+  </div>
+
 {% endblock %}
 
 {% block js %}

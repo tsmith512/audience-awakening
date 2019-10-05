@@ -11,7 +11,7 @@
     console.log('received new question' + JSON.stringify(data));
 
     // Put up the question text as the slide title:
-    document.querySelector('h3').innerText = data.question;
+    document.getElementById('question-text').innerText = data.question;
 
     // Label the buttons:
     document.querySelectorAll('button').forEach(function (el) {
@@ -21,7 +21,7 @@
 
   socket.on('clear question', function () {
     // Put up the question text as the slide title:
-    document.querySelector('h3').innerText = null;
+    document.getElementById('question-text').innerText = null;
 
     // Label the buttons:
     document.querySelectorAll('button').forEach(function (el) {
@@ -30,7 +30,9 @@
   });
 
   socket.on('clear', function () {
-    document.querySelectorAll('h3, button').forEach(function (el) {
+    document.getElementById('question-text').innerText = null;
+
+    document.querySelectorAll('button').forEach(function (el) {
       el.innerText = el.id.length ? el.id.toUpperCase() : null;
     });
   });

@@ -1,5 +1,31 @@
 @import 'style.scss';
 
+table {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 30em;
+}
+
+td {
+  vertical-align: middle;
+  padding: 0.25em;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.flex button {
+  flex: 1 1 0;
+}
+
+.status-preshow .highlight-preshow,
+.status-intro .highlight-intro,
+.status-vote .highlight-vote,
+.status-results .highlight-results,
+.status-close .highlight-close,
+.status-postshow .highlight-postshow,
 .question-trigger.active {
   background: green;
 }
