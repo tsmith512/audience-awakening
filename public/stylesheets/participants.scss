@@ -1,8 +1,15 @@
 @import 'style.scss';
 
 .voting-buttons {
+  .status-vote & {
+    display: flex;
+  }
+
+  flex-wrap: wrap;
 
   button {
-
+    flex: 1 0 40%;
+    margin: 0.25em;
+    padding: 1em;
   }
 }
