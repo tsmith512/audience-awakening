@@ -47,6 +47,7 @@ body {
   justify-content: center;
   text-align: center;
   font-size: calc(10px + 2vmin);
+  padding: 1em;
 }
 
 // Here's a really cheap shot to pull this up.
@@ -64,15 +65,34 @@ body {
 button {
   display: block;
   padding: 0.25em 0.5em;
-  margin: 1em;
+  margin: 0.5em 1em;
+
+  border: 1px solid #999;
+  background: #CCC;
+  border-radius: 2px;
+
+  &:hover {
+    border-color: #CCC;
+    background: #eee;
+  }
+
+  &[disabled] {
+    color: #888 !important;
+    border-color: #AAA;
+    background: #CCC;
+  }
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 h2 {
-  font-size: 1.5em;
+  font-size: 1.25em;
+}
+
+p {
+  font-size: 1.125em;
 }
 
 // For development

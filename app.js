@@ -144,8 +144,8 @@ voteStatus.events.on('state change', (previous, next) => {
   presenters.emit('status', next);
   participants.emit('status', next);
 
-  if (next == 'close') {
-    debug('status change to close')
+  if (next == 'close' || (voteQuestions.active && ['preshow', 'intro', 'postshow'].includes(next))) {
+    debug('status change to close');
     voteCount.clear();
     voteQuestions.deactivate();
   }

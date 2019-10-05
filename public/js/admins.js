@@ -30,7 +30,7 @@
     });
 
     document.querySelectorAll('.response-value, .vote-count').forEach(function (element) {
-      element.classList.remove('active');
+      element.innerText = null;
     });
 
     document.getElementById('results').disabled = true;
