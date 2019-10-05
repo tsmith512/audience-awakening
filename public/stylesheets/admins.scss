@@ -10,6 +10,10 @@ thead {
   border-bottom: 1px solid #999;
 }
 
+th {
+  font-weight: inherit;
+}
+
 tr {
   border-bottom: 1px solid #EEE;
 }
@@ -28,6 +32,10 @@ td {
   flex: 1 1 0;
 }
 
+.question-trigger {
+  padding: 1em;
+}
+
 .status-preshow .highlight-preshow,
 .status-intro .highlight-intro,
 .status-vote .highlight-vote,
@@ -36,4 +44,8 @@ td {
 .status-postshow .highlight-postshow,
 .question-trigger.active {
   background: green;
+}
+
+.status-results .question-trigger.active {
+  background: orange;
 }

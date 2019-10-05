@@ -16,6 +16,13 @@
     // Label the options:
     document.querySelectorAll('.response-option').forEach(function (el) {
       el.innerText = data.responses[el.id.slice(-1)];
+
+      // In case this wasn't properly scrubbed in a jump cue.
+      el.classList.remove('correct');
+
+      if (data.answer == el.id.slice(-1)) {
+        el.classList.add('correct');
+      }
     });
   });
 
@@ -27,18 +34,30 @@
     // Label the options:
     document.querySelectorAll('.response-option, .results-display').forEach(function (el) {
       el.innerText = null;
+      el.classList.remove('correct');
+    });
+
+    document.querySelectorAll('.results-background').forEach(function (el) {
+      el.style.width = null;
     });
   });
 
   socket.on('results', function (data) {
     console.log('received order to present findings ' + JSON.stringify(data));
 
-    // @TODO: So there's no reason to present results of a question isn't
-    // open, but these data don't include the question, so if this fires
-    // before the open, it shows numbers with no context.
+    var sum = 0;
+    for (var key in data) {
+      if (data.hasOwnProperty(key)) {
+        sum += data[key];
+      }
+    }
 
     document.querySelectorAll('.results-display').forEach(function (el) {
       el.innerText = data[el.id.slice(-1)];
+    });
+
+    document.querySelectorAll('.results-background').forEach(function (el) {
+      el.style.width = (data[el.id.slice(-1)] / sum * 100) + "%";
     });
   });
 

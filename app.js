@@ -78,7 +78,7 @@ const connectionStartup = (socket) => {
   socket.emit('status', voteStatus.get());
 
   if (voteQuestions.active) {
-    socket.emit('new question', voteQuestions.getQuestionPublic());
+    socket.emit('new question', voteQuestions.getQuestion());
   }
 };
 
@@ -164,7 +164,7 @@ voteQuestions.events.on('activate', (question) => {
 
   // Notify all kinds of clients that a new question is open
   managers.emit('new question', question);
-  presenters.emit('new question', voteQuestions.getQuestionPublic());
+  presenters.emit('new question', question);
   participants.emit('new question', voteQuestions.getQuestionPublic());
 });
 

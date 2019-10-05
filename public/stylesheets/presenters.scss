@@ -1,20 +1,57 @@
 @import 'style.scss';
 
 dl {
+  display: flex;
+  flex-wrap: wrap;
+
   width: 100%;
-  max-width: 30em;
+  font-size: 1.5em;
+
+  dt, dd {
+    margin: 0 0 0.5em 0;
+    padding: 0.5em;
+    text-align: left;
+  }
+
   dt {
-    display: block;
-    float: left;
-    clear: left;
+    flex: 1 0 auto;
     width: 25%;
+    .status-vote & {
+
+    }
   }
 
   dd {
-    display: block;
-
-    .response-option, .results-display {
-      display: inline-block;
+    position: relative;
+    flex: 3 0 auto;
+    width: 75%;
+    background-color: #EEE;
+    .status-vote & {
+      background-color: 0;
+      display: none;
     }
   }
+
+  .results-background {
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #CCC;
+    z-index: 1;
+  }
+
+  .results-display {
+    position: relative;
+    z-index: 10;
+  }
+}
+
+.status-results .response-option.correct {
+  color: green;
+}
+
+.status-results .response-option.correct + dd .results-background {
+  background-color: #393;
 }
