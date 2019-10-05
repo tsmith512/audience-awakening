@@ -1,35 +1,66 @@
 {% extends 'layout.twig' %}
 
+{% block css %}
+<link rel='stylesheet' href='/stylesheets/presenters.css' />
+{% endblock %}
+
 {% block body %}
-  <h2>{{title}}</h2>
+  <div class="fpo-overlay status-dependent preshow">Preshow: You joined the application, we'll tell you when to use it during the show.</div>
+  <div class="fpo-overlay status-dependent intro">Intro: This is a status we may not actually need</div>
+  <div class="fpo-overlay status-dependent vote">Vote: A question has been opened and you can vote now</div>
+  <div class="fpo-overlay status-dependent results">Results: The question is closed and you can see the results now</div>
+  <div class="fpo-overlay status-dependent close">Close: Put away your phone</div>
+  <div class="fpo-overlay status-dependent postshow">Postshow: Thank you for coming to the show!</div>
 
-  <h3>Question</h3>
+  <section class="status-dependent preshow">
+    <h1>Preshow</h1>
+    <p>PLACEHOLDER: Information can go here about how to get connected, but I doubt the projector will show this preshow.</p>
+  </section>
 
-  <dl>
-    <dt>A</dt>
-    <dd>
-      <span class="response-option" id="response-a"></span>
-      <span class="results-display" id="results-a"></span>
-    </dd>
+  <section class="status-dependent intro">
+    <h1>Intro</h1>
+    <p>PLACEHOLDER: I don't actually know if we have a use for a "screen" between the preshow and actually showing a question.</p>
+  </section>
 
-    <dt>B</dt>
-    <dd>
-      <span class="response-option" id="response-b"></span>
-      <span class="results-display" id="results-b"></span>
-    </dd>
+  <section class="status-dependent vote results">
+    <h1 id="question-text">Question</h1>
 
-    <dt>C</dt>
-    <dd>
-      <span class="response-option" id="response-c"></span>
-      <span class="results-display" id="results-c"></span>
-    </dd>
+    <dl>
+      <dt class="response-option" id="response-a">A</dt>
+      <dd>
+        <span class="results-background"  id="background-a"></span>
+        <span class="results-display" id="results-a"></span>
+      </dd>
 
-    <dt>D</dt>
-    <dd>
-      <span class="response-option" id="response-d"></span>
-      <span class="results-display" id="results-d"></span>
-    </dd>
-  </dl>
+      <dt class="response-option" id="response-b">B</dt>
+      <dd>
+        <span class="results-background"  id="background-b"></span>
+        <span class="results-display" id="results-b"></span>
+      </dd>
+
+      <dt class="response-option" id="response-c">C</dt>
+      <dd>
+        <span class="results-background"  id="background-c"></span>
+        <span class="results-display" id="results-c"></span>
+      </dd>
+
+      <dt class="response-option" id="response-d">D</dt>
+      <dd>
+        <span class="results-background"  id="background-d"></span>
+        <span class="results-display" id="results-d"></span>
+      </dd>
+    </dl>
+  </section>
+
+  <section class="status-dependent close">
+    <h1>Placeholder Language</h1>
+    <p>Put yer phones up until next time!</p>
+  </section>
+
+  <section class="status-dependent postshow">
+    <h1>Spring Awakening</h1>
+    <p>Thank you for joining us for this performance.</p>
+  </section>
 {% endblock %}
 
 {% block js %}

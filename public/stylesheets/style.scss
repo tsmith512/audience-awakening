@@ -2,36 +2,36 @@
 // Pulled from cladocar/CSS-Mini-Reset
 /* CSS Mini Reset */
 
-html,body,div,form,fieldset,legend,caption,label,h1,h2,h3,h4,h5,h6,p,blockquote,pre
-{
-    font-size: 100%;
-    font-weight: normal;
+html,body,div,form,fieldset,legend,caption,label,h1,h2,h3,h4,h5,h6,p,blockquote,pre {
+  font-size: 100%;
+  font-weight: normal;
 
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 
-    vertical-align: baseline;
+  vertical-align: baseline;
 
-    border: 0;
-    outline: 0;
-    background: transparent;
+  border: 0;
+  outline: 0;
+  background: transparent;
 }
 
-table
-{
-    border-spacing: 0;
-    border-collapse: collapse;
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
 }
 
-th,td
-{
-    text-align: left;
-    vertical-align: top;
+th,td {
+  text-align: left;
+  vertical-align: top;
 }
 
-img
-{
-    border: 0;
+img {
+  border: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
 }
 // END RESET
 
@@ -47,4 +47,67 @@ body {
   justify-content: center;
   text-align: center;
   font-size: calc(10px + 2vmin);
+  padding: 1em;
+}
+
+// Here's a really cheap shot to pull this up.
+.status-dependent { display: none; }
+.status-preshow .preshow { display: block; }
+.status-intro .intro { display: block; }
+.status-vote .vote { display: block; }
+.status-results .results { display: block; }
+.status-close .close { display: block; }
+.status-postshow .postshow { display: block; }
+.status-dependent { display: none; }
+
+// Global elements
+
+button {
+  display: block;
+  padding: 0.25em 0.5em;
+  margin: 0.5em 1em;
+
+  border: 1px solid #999;
+  background: #CCC;
+  border-radius: 2px;
+
+  &:hover {
+    border-color: #CCC;
+    background: #eee;
+  }
+
+  &[disabled] {
+    color: #888 !important;
+    border-color: #AAA;
+    background: #CCC;
+  }
+}
+
+h1, h2, h3 {
+  margin: 1em auto;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 1.5em;
+}
+
+h2 {
+  font-size: 1.25em;
+}
+
+p {
+  font-size: 1.125em;
+}
+
+// For development
+.fpo-overlay {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+  right: 1em;
+  padding: 1em;
+  font-size: 0.75em;
+  background: red;
+  color: white;
 }

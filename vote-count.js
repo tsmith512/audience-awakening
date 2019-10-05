@@ -1,4 +1,5 @@
 const debug = require('debug')('audience-awakening:vote');
+const EventEmitter = require('events');
 
 module.exports = {
   // Currently, we're only handling 4-answer single-choice questions, so we can
@@ -30,5 +31,8 @@ module.exports = {
     Object.keys(this.counts).forEach((key) => {
       this.counts[key] = 0;
     });
+    this.events.emit('clear');
   },
+
+  events: new EventEmitter(),
 };

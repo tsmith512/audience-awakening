@@ -2,11 +2,10 @@
 <html>
   <head>
     <title>{{ title }}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    {% block css %}{% endblock %}
   </head>
   <body>
     <div class="container">
-      <header><h1>Live Survey Demo</h1></header>
       <main>
         {% block body %}{% endblock %}
       </main>
