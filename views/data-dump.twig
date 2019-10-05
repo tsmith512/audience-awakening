@@ -1,14 +1,12 @@
 {% extends 'debug-layout.twig' %}
 
 {% block body %}
-<textarea>
+<textarea readonly>
 PLACEHOLDER FOR LIVE APPLICATION DATA
 </textarea>
 {% endblock %}
 
 {% block js %}
-<script src="/socket.io/socket.io.js"></script>
-<script>
-  var socket = io();
-</script>
+  <script src="/js/debug.js"></script>
 {% endblock %}
+

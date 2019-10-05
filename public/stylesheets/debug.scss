@@ -1,3 +1,9 @@
+.debug-container {
+  margin: 1em auto 3em auto;
+  text-align: center;
+  padding: 1em;
+}
+
 iframe {
   width: 360px;
   height: 680px;
@@ -6,6 +12,17 @@ iframe {
 }
 
 textarea {
-  width: 80vw;
-  height: 80vh;
+  width: 50vw;
+  height: 60vh;
+}
+
+.fpo-overlay {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+  right: 1em;
+  padding: 1em;
+  font-size: 0.75em;
+  background: red;
+  color: white;
 }
