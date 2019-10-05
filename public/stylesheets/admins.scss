@@ -1,5 +1,9 @@
 @import 'style.scss';
 
+.container {
+  font-size: 1em;
+}
+
 table {
   margin: 0 auto;
   width: 100%;
@@ -32,7 +36,7 @@ td {
   flex: 1 1 0;
 }
 
-.question-trigger {
+.question-trigger, .q {
   padding: 1em;
 }
 
@@ -44,6 +48,7 @@ td {
 .status-postshow .highlight-postshow,
 .question-trigger.active {
   background: green;
+  color: white;
 }
 
 .status-results .question-trigger.active {
