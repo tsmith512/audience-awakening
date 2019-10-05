@@ -73,6 +73,8 @@ const presenters = io.of('/present');
 // ^ The projector display
 const managers = io.of('/manage');
 // ^ The stage manager's control desk
+const debuggers = io.of('/debug');
+// ^ Testing displays
 
 const connectionStartup = (socket) => {
   socket.emit('status', voteStatus.get());
@@ -132,9 +134,21 @@ managers.on('connection', (socket) => {
     debug(`manager ordered to advance game status to ${msg}`);
     voteStatus.set(msg);
   });
-
   // All other manager buttons are status changes, they are handled in the event
   // handler below.
+});
+
+debuggers.on('connection', (socket) => {
+  debug('debug display connected');
+  connectionStartup(socket);
+
+  socket.emit('data dump', {
+    status: voteStatus.get(),
+    statusAllowed: voteStatus.allowedValues,
+    questions: voteQuestions.listQuestions(),
+    activeQuestion: voteQuestions.activeQuestion ? voteQuestions.getQuestion() : null,
+    vote: voteCount.report(),
+  });
 });
 
 // Events for vote counts and questions
@@ -143,6 +157,7 @@ voteStatus.events.on('state change', (previous, next) => {
   managers.emit('status', next);
   presenters.emit('status', next);
   participants.emit('status', next);
+  debuggers.emit('status', next);
 
   if (next == 'close' || (voteQuestions.active && ['preshow', 'intro', 'postshow'].includes(next))) {
     debug('status change to close');

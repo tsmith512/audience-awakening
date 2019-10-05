@@ -5,20 +5,13 @@
 {% endblock %}
 
 {% block body %}
-  <div class="fpo-overlay status-dependent preshow">Preshow: You joined the application, we'll tell you when to use it during the show.</div>
-  <div class="fpo-overlay status-dependent intro">Intro: This is a status we may not actually need</div>
-  <div class="fpo-overlay status-dependent vote">Vote: A question has been opened and you can vote now</div>
-  <div class="fpo-overlay status-dependent results">Results: The question is closed and you can see the results now</div>
-  <div class="fpo-overlay status-dependent close">Close: Put away your phone</div>
-  <div class="fpo-overlay status-dependent postshow">Postshow: Thank you for coming to the show!</div>
-
   <h1>Stage Manager Deck</h1>
 
   <h2>Presets &mdash; Before</h2>
 
   <div class="flex">
-    <button id="preshow" class="highlight-preshow">Preshow</button>
-    <button id="intro" class="highlight-intro">Intro information</button>
+    <button id="preshow" class="highlight-preshow q">Preshow</button>
+    <button id="intro" class="highlight-intro q">Intro information</button>
   </div>
 
   <h2>Questions</h2>
@@ -73,9 +66,9 @@
   <h2>Presets &mdash; After</h2>
 
   <div class="flex">
-    <button id="results" class="highlight-results">Present Results</button>
-    <button id="close" class="highlight-close">Close Question</button>
-    <button id="postshow" class="highlight-postshow">Postshow</button>
+    <button id="results" class="highlight-results q">Present Results</button>
+    <button id="close" class="highlight-close q">Close Question</button>
+    <button id="postshow" class="highlight-postshow q">Postshow</button>
   </div>
 
 {% endblock %}
