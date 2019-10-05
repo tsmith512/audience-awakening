@@ -134,21 +134,21 @@ managers.on('connection', (socket) => {
     debug(`manager ordered to advance game status to ${msg}`);
     voteStatus.set(msg);
   });
-
-  debuggers.on('connection', (socket) => {
-    debug('debug display connected');
-    connectionStartup(socket);
-
-    socket.emit('data dump', {
-      status: voteStatus.get(),
-      statusAllowed: voteStatus.allowedValues,
-      questions: voteQuestions.listQuestions(),
-      activeQuestion: voteQuestions.activeQuestion ? voteQuestions.getQuestion() : null,
-      vote: voteCount.report(),
-    });
-  });
   // All other manager buttons are status changes, they are handled in the event
   // handler below.
+});
+
+debuggers.on('connection', (socket) => {
+  debug('debug display connected');
+  connectionStartup(socket);
+
+  socket.emit('data dump', {
+    status: voteStatus.get(),
+    statusAllowed: voteStatus.allowedValues,
+    questions: voteQuestions.listQuestions(),
+    activeQuestion: voteQuestions.activeQuestion ? voteQuestions.getQuestion() : null,
+    vote: voteCount.report(),
+  });
 });
 
 // Events for vote counts and questions

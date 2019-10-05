@@ -4,16 +4,25 @@
   padding: 1em;
 }
 
+header {
+  margin-bottom: 2em;
+
+  a {
+    font-weight: bold;
+  }
+}
+
 iframe {
   width: 360px;
   height: 680px;
-  border: 1px solid #CCC;
+  border: 1px solid #ddd;
   margin: 1em;
 }
 
 textarea {
   width: 50vw;
   height: 60vh;
+  border: 1px solid #ddd;
 }
 
 .fpo-overlay {
