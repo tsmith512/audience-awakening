@@ -110,7 +110,7 @@ presenters.on('connection', (socket) => {
 
   socket.emit('update vote count', voteCount.report());
 
-  if (voteStatus.get() == "results") {
+  if (voteStatus.get() === 'results') {
     socket.emit('results', voteCount.report());
   }
 });
@@ -159,13 +159,13 @@ voteStatus.events.on('state change', (previous, next) => {
   participants.emit('status', next);
   debuggers.emit('status', next);
 
-  if (next == 'close' || (voteQuestions.active && ['preshow', 'intro', 'postshow'].includes(next))) {
+  if (next === 'close' || (voteQuestions.active && ['preshow', 'intro', 'postshow'].includes(next))) {
     debug('status change to close');
     voteCount.clear();
     voteQuestions.deactivate();
   }
 
-  if (next == 'results') {
+  if (next === 'results') {
     presenters.emit('results', voteCount.report());
   }
 });

@@ -18,7 +18,7 @@ module.exports = {
   set(change) {
     const current = this.status;
 
-    if (this.allowedValues.indexOf(change) == -1) {
+    if (this.allowedValues.indexOf(change) === -1) {
       throw `You messed that up, not allowable status ${change}`;
     }
 

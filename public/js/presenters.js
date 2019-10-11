@@ -20,7 +20,7 @@
       // In case this wasn't properly scrubbed in a jump cue.
       el.classList.remove('correct');
 
-      if (data.answer == el.id.slice(-1)) {
+      if (data.answer === el.id.slice(-1)) {
         el.classList.add('correct');
       }
     });
@@ -57,7 +57,7 @@
     });
 
     document.querySelectorAll('.results-background').forEach(function (el) {
-      el.style.width = (data[el.id.slice(-1)] / sum * 100) + "%";
+      el.style.width = ((data[el.id.slice(-1)] / sum) * 100) + '%';
     });
   });
 
