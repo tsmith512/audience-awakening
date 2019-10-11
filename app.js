@@ -42,7 +42,7 @@ app.get('/', (req, res) => res.render('participant', { title: 'Participant Displ
 
 app.get('/present', (req, res) => res.render('present', { title: 'Projector Display' }));
 
-app.get('/sm', (req, res) => res.render('admin', { title: 'Stage Manager Display', questions: voteQuestions.listQuestions() }));
+app.get('/sm', (req, res) => res.render('admin', { title: 'Stage Manager Display', questions: voteQuestions.listQuestionsByTitle() }));
 
 app.get('/debug', (req, res) => res.render('debug', { title: '3-Up Testing Display' }));
 
