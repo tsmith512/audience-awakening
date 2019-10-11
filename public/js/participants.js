@@ -17,6 +17,12 @@
     document.querySelectorAll('button').forEach(function (el) {
       el.innerText = data.responses[el.id];
     });
+
+    // Populate the answer text:
+    // @TODO: So this is a bad way to do this, but it'll work in the context of
+    // this show, but _duhhhhh_ it drops the answer text into the DOM, even if
+    // it is currently invisible.
+    document.getElementById('answer-text').innerText = data.responses[data.answer];
   });
 
   socket.on('clear question', function () {

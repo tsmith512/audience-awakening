@@ -180,7 +180,7 @@ voteQuestions.events.on('activate', (question) => {
   // Notify all kinds of clients that a new question is open
   managers.emit('new question', question);
   presenters.emit('new question', question);
-  participants.emit('new question', voteQuestions.getQuestionPublic());
+  participants.emit('new question', question);
 });
 
 voteQuestions.events.on('deactivate', () => {
