@@ -1,5 +1,15 @@
 @import 'style.scss';
 
+.show-title:after {
+  content: "Stage Manager Deck";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-indent: 0;
+}
+
 .container {
   font-size: 1em;
 }
@@ -11,7 +21,7 @@ table {
 }
 
 thead {
-  border-bottom: 1px solid #999;
+  border-bottom: 1px solid #333;
 }
 
 th {
@@ -19,7 +29,7 @@ th {
 }
 
 tr {
-  border-bottom: 1px solid #EEE;
+  border-bottom: 1px solid #333;
 }
 
 td {

@@ -37,6 +37,8 @@ img {
 
 body {
   font-family: sans-serif;
+  background: black;
+  color: white;
 }
 
 .container {
@@ -67,13 +69,13 @@ button {
   padding: 0.25em 0.5em;
   margin: 0.5em 1em;
 
-  border: 1px solid #999;
-  background: #CCC;
+  border: 1px solid #666;
+  background: #AAA;
   border-radius: 2px;
 
   &:hover {
-    border-color: #CCC;
-    background: #eee;
+    border-color: #999;
+    background: #DDD;
   }
 
   &[disabled] {
@@ -81,6 +83,16 @@ button {
     border-color: #AAA;
     background: #CCC;
   }
+}
+
+.show-title {
+  position: relative;
+  text-indent: 100%;
+  overflow: hidden;
+  height: 0;
+  padding-top: (200/700)*100%;
+  background: transparent url(../gfx/title.svg) center center no-repeat;
+  background-size: contain;
 }
 
 h1, h2, h3 {
