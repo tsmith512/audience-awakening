@@ -69,12 +69,13 @@ button {
   margin: 0.5em 1em;
 
   border: 1px solid #666;
-  background: #AAA;
-  border-radius: 2px;
+  background: rgb(187,187,187);
+  background: linear-gradient(180deg, rgba(187,187,187,1) 0%, rgba(136,136,136,1) 100%);
+  border-radius: 4px;
 
   &:hover {
-    border-color: #999;
-    background: #DDD;
+    background: rgb(221,221,221);
+    background: linear-gradient(180deg, rgba(221,221,221,1) 0%, rgba(153,153,153,1) 100%);
   }
 
   &[disabled] {

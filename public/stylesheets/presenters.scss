@@ -9,13 +9,15 @@ dl {
   display: flex;
   flex-wrap: wrap;
 
+  width: 80%;
+  width: 80vw;
+  font-size: 1.5em;
+  margin: 0 auto;
+
   .status-vote & {
     display: block;
     text-align: center;
   }
-
-  width: 100%;
-  font-size: 1.5em;
 
   dt, dd {
     margin: 0 0 0.5em 0;
@@ -36,7 +38,8 @@ dl {
     position: relative;
     flex: 3 0 auto;
     width: 75%;
-    background-color: #EEE;
+    background-color: #111;
+    border: 1px solid #444;
     .status-vote & {
       background-color: 0;
       display: none;
@@ -49,11 +52,12 @@ dl {
     top: 0;
     bottom: 0;
     left: 0;
-    background-color: #CCC;
+    background-color: #999;
     z-index: 1;
   }
 
   .results-display {
+    display: block;
     position: relative;
     z-index: 10;
   }
@@ -61,6 +65,7 @@ dl {
 
 .status-results .response-option.correct {
   color: green;
+  font-weight: bold;
 }
 
 .status-results .response-option.correct + dd .results-background {

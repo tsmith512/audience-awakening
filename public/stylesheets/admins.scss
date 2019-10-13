@@ -56,10 +56,14 @@ td {
 .status-close .highlight-close,
 .status-postshow .highlight-postshow,
 .question-trigger.active {
-  background: green;
+  background: rgb(0,170,0);
+  background: linear-gradient(180deg, rgba(0,170,0,1) 0%, rgba(0,102,0,1) 100%);
+  border-color: #006600;
   color: white;
 }
 
 .status-results .question-trigger.active {
-  background: orange;
+  background: rgb(255,153,0);
+  background: linear-gradient(180deg, rgba(255,153,0,1) 0%, rgba(204,102,0,1) 100%);
+  border-color: #996600;
 }

@@ -1,5 +1,11 @@
 @import 'style.scss';
 
+#answer-text {
+  color: #009900;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
 .voting-buttons {
   .status-vote & {
     display: flex;
@@ -9,7 +15,8 @@
 
   button {
     flex: 1 0 40%;
-    margin: 0.25em;
-    padding: 1em;
+    margin: 0.125em;
+    padding: 0.5em;
+    font-size: 2em;
   }
 }
