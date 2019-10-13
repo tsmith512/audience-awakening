@@ -6,6 +6,17 @@ module.exports = {
 
   questions: [
     {
+      title: 'Example Question Placeholder',
+      question: '(Placeholder) Example question to be used for the preshow demo.',
+      responses: {
+        a: 'A',
+        b: 'B',
+        c: 'C',
+        d: 'D',
+      },
+      answer: 'a',
+    },
+    {
       title: 'Texas ranking in 2016 teen birth rates',
       question: 'In 2016, where did Texas rank among the nation in teen birth rates among females age 15-19 (with 1 representing the highest rate and 50 representing the lowest rate)?',
       citation: 'According to the US Department of Health and Human Services.',
