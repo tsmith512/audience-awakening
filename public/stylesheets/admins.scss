@@ -1,5 +1,27 @@
 @import 'style.scss';
 
+.container {
+  display: block;
+}
+
+header {
+  margin: 0 auto;
+}
+
+.two-col {
+  @media screen and (min-width: 600px) {
+    display: flex;
+
+    .col {
+      flex: 1 1 50%;
+      padding: 1em;
+    }
+  }
+}
+
+header {
+  max-width: 400px;
+}
 .show-title:after {
   content: "Stage Manager Deck";
   display: block;
@@ -8,10 +30,6 @@
   left: 0;
   width: 100%;
   text-indent: 0;
-}
-
-.container {
-  font-size: 1em;
 }
 
 table {
@@ -40,10 +58,12 @@ td {
 .flex {
   display: flex;
   flex-wrap: nowrap;
+  justify-content: space-evenly;
 }
 
 .flex button {
   flex: 1 1 0;
+  max-width: 400px;
 }
 
 .question-trigger, .q {
