@@ -28,6 +28,8 @@
     // this show, but _duhhhhh_ it drops the answer text into the DOM, even if
     // it is currently invisible.
     document.getElementById('answer-text').innerText = data.responses[data.answer];
+    document.getElementById('citation-text').innerText = data.citation || null;
+    document.getElementById('commentary-text').innerText = data.commentary || null;
   });
 
   socket.on('clear question', function () {

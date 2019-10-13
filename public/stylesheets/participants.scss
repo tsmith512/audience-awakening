@@ -1,9 +1,22 @@
 @import 'style.scss';
 
+.results-text {
+  margin-bottom: 1em;
+
+  &:empty {
+    display: none;
+  }
+}
+
 .answer-text {
   color: #009900;
   font-size: 1.5em;
   font-weight: bold;
+}
+
+.citation-text {
+  font-style: italic;
+  font-size: 0.875em;
 }
 
 .voting-buttons {

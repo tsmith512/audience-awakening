@@ -24,6 +24,9 @@
         el.classList.add('correct');
       }
     });
+
+    // Put up the citation, if there is one.
+    document.getElementById('citation-text').innerText = data.citation;
   });
 
 
