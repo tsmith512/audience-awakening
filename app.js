@@ -100,9 +100,9 @@ participants.on('connection', (socket) => {
   });
 });
 
-// PRESENTERS (there will probably only be one at a time) display intros,
-// questions, results, and shutdown notices for the audience on a read-only
-// display on the route (/present)
+// PRESENTERS (there will probably only be one at a time) display questions,
+// results, and shutdown notices for the audience on a read-only display on the
+// route (/present)
 presenters.on('connection', (socket) => {
   debug('presenter connected');
 
@@ -159,7 +159,7 @@ voteStatus.events.on('state change', (previous, next) => {
   participants.emit('status', next);
   debuggers.emit('status', next);
 
-  if (next === 'close' || (voteQuestions.active && ['preshow', 'intro', 'postshow'].includes(next))) {
+  if (next === 'close' || (voteQuestions.active && ['preshow', 'postshow'].includes(next))) {
     debug('status change to close');
     voteCount.clear();
     voteQuestions.deactivate();

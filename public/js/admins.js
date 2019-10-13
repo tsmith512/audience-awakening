@@ -54,10 +54,6 @@
     socket.emit('status', 'preshow');
   });
 
-  document.getElementById('intro').addEventListener('click', function () {
-    socket.emit('status', 'intro');
-  });
-
   document.getElementById('results').addEventListener('click', function () {
     socket.emit('status', 'results');
   });

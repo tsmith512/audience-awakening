@@ -7,7 +7,7 @@ const EventEmitter = require('events');
 // to when it changes.
 
 module.exports = {
-  allowedValues: ['preshow', 'intro', 'vote', 'results', 'close', 'postshow'],
+  allowedValues: ['preshow', 'vote', 'results', 'close', 'postshow'],
   status: null,
 
   init() {
