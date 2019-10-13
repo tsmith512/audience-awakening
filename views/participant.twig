@@ -6,14 +6,15 @@
 
 
 {% block body %}
+  <header>
+    <h1 class="show-title">Spring Awakening</h1>
+  </header>
   <section class="status-dependent preshow">
-    <h1>Spring Awakening</h1>
-    <p>You have connected! We will tell you how to use it during the show.</p>
-  </section>
-
-  <section class="status-dependent intro">
-    <h1>Intro</h1>
-    <p>PLACEHOLDER: I don't actually know if we have a use for a "screen" between the preshow and actually showing a question.</p>
+    <p>
+      Great work, you have connected! Keep this page ready so it you
+      participate. In the meantime, please keep your phone silent and dark until
+      prompted to use it during the show.
+    </p>
   </section>
 
   <section class="status-dependent vote results">
@@ -25,11 +26,17 @@
       <button id="c">C</button>
       <button id="d">D</button>
     </div>
+
+    <div class="status-dependent results">
+      <p id="answer-text" class="answer-text results-text"></p>
+      <p id="commentary-text" class="commentary-text results-text"></p>
+      <p id="citation-text" class="citation-text results-text"></p>
+    </div>
   </section>
 
   <section class="status-dependent close">
-    <h1>Placeholder Language:</h1>
-    <p>Uhhh, put your phone away, we're done for a minute but we'll be right back.</p>
+    <h1>Thank You</h1>
+    <p>Enjoy the continuation of the show.</p>
   </section>
 
   <section class="status-dependent postshow">

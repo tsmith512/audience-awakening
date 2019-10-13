@@ -1,5 +1,28 @@
 @import 'style.scss';
 
+h2 {
+  font-size: 1.375em;
+}
+
+.results-text {
+  margin-bottom: 1em;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.answer-text {
+  color: #009900;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.citation-text {
+  font-style: italic;
+  font-size: 0.875em;
+}
+
 .voting-buttons {
   .status-vote & {
     display: flex;
@@ -9,7 +32,15 @@
 
   button {
     flex: 1 0 40%;
-    margin: 0.25em;
-    padding: 1em;
+    margin: 0.125em;
+    padding: 0.5em;
+    font-size: 2em;
+  }
+
+  .active {
+    background: rgb(188,121,255);
+    background: linear-gradient(180deg, rgba(188,121,255,1) 0%, rgba(86,43,129,1) 100%);
+    border-color: rgba(86,43,129,1);
+    color: white;
   }
 }

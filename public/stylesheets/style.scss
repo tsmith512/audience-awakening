@@ -37,6 +37,8 @@ img {
 
 body {
   font-family: sans-serif;
+  background: black;
+  color: white;
 }
 
 .container {
@@ -46,14 +48,12 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: calc(10px + 2vmin);
   padding: 1em;
 }
 
 // Here's a really cheap shot to pull this up.
 .status-dependent { display: none; }
 .status-preshow .preshow { display: block; }
-.status-intro .intro { display: block; }
 .status-vote .vote { display: block; }
 .status-results .results { display: block; }
 .status-close .close { display: block; }
@@ -67,13 +67,15 @@ button {
   padding: 0.25em 0.5em;
   margin: 0.5em 1em;
 
-  border: 1px solid #999;
-  background: #CCC;
-  border-radius: 2px;
+  border: 1px solid #666;
+  background: rgb(187,187,187);
+  background: linear-gradient(180deg, rgba(187,187,187,1) 0%, rgba(136,136,136,1) 100%);
+  border-radius: 4px;
+  outline: none;
 
   &:hover {
-    border-color: #CCC;
-    background: #eee;
+    background: rgb(221,221,221);
+    background: linear-gradient(180deg, rgba(221,221,221,1) 0%, rgba(153,153,153,1) 100%);
   }
 
   &[disabled] {
@@ -81,6 +83,16 @@ button {
     border-color: #AAA;
     background: #CCC;
   }
+}
+
+.show-title {
+  position: relative;
+  text-indent: 100%;
+  overflow: hidden;
+  height: 0;
+  padding-top: (200/700)*100%;
+  background: transparent url(../gfx/title.svg) center center no-repeat;
+  background-size: contain;
 }
 
 h1, h2, h3 {

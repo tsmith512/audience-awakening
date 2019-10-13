@@ -42,7 +42,7 @@ app.get('/', (req, res) => res.render('participant', { title: 'Participant Displ
 
 app.get('/present', (req, res) => res.render('present', { title: 'Projector Display' }));
 
-app.get('/sm', (req, res) => res.render('admin', { title: 'Stage Manager Display', questions: voteQuestions.listQuestions() }));
+app.get('/sm', (req, res) => res.render('admin', { title: 'Stage Manager Display', questions: voteQuestions.listQuestionsByTitle() }));
 
 app.get('/debug', (req, res) => res.render('debug', { title: '3-Up Testing Display' }));
 
@@ -98,11 +98,19 @@ participants.on('connection', (socket) => {
 
     managers.emit('update vote count', voteCount.report());
   });
+
+  socket.on('vote change', (msg) => {
+    debug(`participant vote change from ${msg.old} to ${msg.new}`);
+
+    voteCount.voteChange(msg.old, msg.new);
+
+    managers.emit('update vote count', voteCount.report());
+  });
 });
 
-// PRESENTERS (there will probably only be one at a time) display intros,
-// questions, results, and shutdown notices for the audience on a read-only
-// display on the route (/present)
+// PRESENTERS (there will probably only be one at a time) display questions,
+// results, and shutdown notices for the audience on a read-only display on the
+// route (/present)
 presenters.on('connection', (socket) => {
   debug('presenter connected');
 
@@ -110,7 +118,7 @@ presenters.on('connection', (socket) => {
 
   socket.emit('update vote count', voteCount.report());
 
-  if (voteStatus.get() == "results") {
+  if (voteStatus.get() === 'results') {
     socket.emit('results', voteCount.report());
   }
 });
@@ -159,13 +167,13 @@ voteStatus.events.on('state change', (previous, next) => {
   participants.emit('status', next);
   debuggers.emit('status', next);
 
-  if (next == 'close' || (voteQuestions.active && ['preshow', 'intro', 'postshow'].includes(next))) {
+  if (next === 'close' || (voteQuestions.active && ['preshow', 'postshow'].includes(next))) {
     debug('status change to close');
     voteCount.clear();
     voteQuestions.deactivate();
   }
 
-  if (next == 'results') {
+  if (next === 'results') {
     presenters.emit('results', voteCount.report());
   }
 });
@@ -180,7 +188,7 @@ voteQuestions.events.on('activate', (question) => {
   // Notify all kinds of clients that a new question is open
   managers.emit('new question', question);
   presenters.emit('new question', question);
-  participants.emit('new question', voteQuestions.getQuestionPublic());
+  participants.emit('new question', question);
 });
 
 voteQuestions.events.on('deactivate', () => {

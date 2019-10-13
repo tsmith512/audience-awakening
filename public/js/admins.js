@@ -1,10 +1,10 @@
 (function () {
   'use strict';
 
+  var socket = io('/manage');
+
   // Initial status
   document.getElementById('results').disabled = true;
-
-  var socket = io('/manage');
 
   socket.on('status', function (data) {
     document.querySelector('body').className = 'status-' + data;
@@ -52,10 +52,6 @@
 
   document.getElementById('preshow').addEventListener('click', function () {
     socket.emit('status', 'preshow');
-  });
-
-  document.getElementById('intro').addEventListener('click', function () {
-    socket.emit('status', 'intro');
   });
 
   document.getElementById('results').addEventListener('click', function () {

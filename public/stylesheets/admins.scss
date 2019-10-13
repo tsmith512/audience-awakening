@@ -1,7 +1,35 @@
 @import 'style.scss';
 
 .container {
-  font-size: 1em;
+  display: block;
+}
+
+header {
+  margin: 0 auto;
+}
+
+.two-col {
+  @media screen and (min-width: 600px) {
+    display: flex;
+
+    .col {
+      flex: 1 1 50%;
+      padding: 1em;
+    }
+  }
+}
+
+header {
+  max-width: 400px;
+}
+.show-title:after {
+  content: "Stage Manager Deck";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-indent: 0;
 }
 
 table {
@@ -11,7 +39,7 @@ table {
 }
 
 thead {
-  border-bottom: 1px solid #999;
+  border-bottom: 1px solid #333;
 }
 
 th {
@@ -19,7 +47,7 @@ th {
 }
 
 tr {
-  border-bottom: 1px solid #EEE;
+  border-bottom: 1px solid #333;
 }
 
 td {
@@ -30,10 +58,12 @@ td {
 .flex {
   display: flex;
   flex-wrap: nowrap;
+  justify-content: space-evenly;
 }
 
 .flex button {
   flex: 1 1 0;
+  max-width: 400px;
 }
 
 .question-trigger, .q {
@@ -41,16 +71,19 @@ td {
 }
 
 .status-preshow .highlight-preshow,
-.status-intro .highlight-intro,
 .status-vote .highlight-vote,
 .status-results .highlight-results,
 .status-close .highlight-close,
 .status-postshow .highlight-postshow,
 .question-trigger.active {
-  background: green;
+  background: rgb(0,170,0);
+  background: linear-gradient(180deg, rgba(0,170,0,1) 0%, rgba(0,102,0,1) 100%);
+  border-color: #006600;
   color: white;
 }
 
 .status-results .question-trigger.active {
-  background: orange;
+  background: rgb(255,153,0);
+  background: linear-gradient(180deg, rgba(255,153,0,1) 0%, rgba(204,102,0,1) 100%);
+  border-color: #996600;
 }
