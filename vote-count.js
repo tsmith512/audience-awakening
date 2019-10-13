@@ -26,6 +26,29 @@ module.exports = {
     }
   },
 
+  // NOTE: Given the constraints and goals on this project, this method is not
+  // going to record-keep or verify changes. It will change the vote as called
+  // by subtracting 1 from old and adding 1 to new. Its only validation will be
+  // to prevent a vote count from going negative and that votes are for valid
+  // keys.
+  voteChange(oldKey, newKey) {
+    // To validate user-submitted data, the "key" from the client socket.emit
+    // should match a valid key to vote for in this.counts.
+    if (Object.prototype.hasOwnProperty.call(this.counts, oldKey)
+        && Object.prototype.hasOwnProperty.call(this.counts, newKey)
+    ) {
+      if (this.counts[oldKey] >= 1) {
+        debug(`vote subtracted for ${oldKey}`);
+        this.counts[oldKey] -= 1;
+      }
+
+      debug(`vote added for ${newKey}`);
+      this.counts[newKey] += 1;
+    } else {
+      debug(`vote submitted for invalid key: ${JSON.stringify([oldKey, newKey])}`);
+    }
+  },
+
   clear() {
     debug('vote counts reset');
     Object.keys(this.counts).forEach((key) => {

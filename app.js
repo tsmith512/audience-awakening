@@ -98,6 +98,14 @@ participants.on('connection', (socket) => {
 
     managers.emit('update vote count', voteCount.report());
   });
+
+  socket.on('vote change', (msg) => {
+    debug(`participant vote change from ${msg.old} to ${msg.new}`);
+
+    voteCount.voteChange(msg.old, msg.new);
+
+    managers.emit('update vote count', voteCount.report());
+  });
 });
 
 // PRESENTERS (there will probably only be one at a time) display questions,

@@ -1,6 +1,6 @@
 @import 'style.scss';
 
-#answer-text {
+.answer-text {
   color: #009900;
   font-size: 1.5em;
   font-weight: bold;
@@ -18,5 +18,12 @@
     margin: 0.125em;
     padding: 0.5em;
     font-size: 2em;
+  }
+
+  .active {
+    background: rgb(188,121,255);
+    background: linear-gradient(180deg, rgba(188,121,255,1) 0%, rgba(86,43,129,1) 100%);
+    border-color: rgba(86,43,129,1);
+    color: white;
   }
 }

@@ -72,6 +72,7 @@ button {
   background: rgb(187,187,187);
   background: linear-gradient(180deg, rgba(187,187,187,1) 0%, rgba(136,136,136,1) 100%);
   border-radius: 4px;
+  outline: none;
 
   &:hover {
     background: rgb(221,221,221);
