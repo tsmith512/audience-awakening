@@ -70,6 +70,33 @@ td {
   padding: 0.5em 1em;
 }
 
+.toggle-trigger {
+  position: relative;
+
+  &:before {
+    content: " ";
+    position: absolute;
+    top: -.75em;
+    bottom: -.75em;
+    left: -.75em;
+    right: -.75em;
+    border: 1px solid #999;
+  }
+
+  &:after {
+    content: " TOGGLE ";
+    position: absolute;
+    top: -1.5em;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75em;
+    background: black;
+    color: #eee;
+    letter-spacing: 3px;
+    padding: 0 .5em;
+  }
+}
+
 .status-preshow .highlight-preshow,
 .status-vote .highlight-vote,
 .status-results .highlight-results,
