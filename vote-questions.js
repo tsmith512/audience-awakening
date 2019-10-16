@@ -121,7 +121,7 @@ module.exports = {
   },
 
   deactivate() {
-    this.index = false;
+    this.active = false;
     this.events.emit('deactivate');
   },
 
