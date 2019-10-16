@@ -2,9 +2,23 @@
   'use strict';
 
   var socket = io('/present');
+  var blackout = false;
 
   socket.on('status', function (data) {
-    document.querySelector('body').className = 'status-' + data;
+    document.querySelector('body').className = document.querySelector('body').className.replace(/status-\w+/g, '');
+    document.querySelector('body').classList.add('status-' + data);
+    status = data;
+  });
+
+  socket.on('blackout', function (data) {
+    console.log('received blackout update: ' + ((data) ? 'enable' : 'disable'));
+    blackout = data;
+
+    if (blackout) {
+      document.querySelector('body').classList.add('presenter-blackout');
+    } else {
+      document.querySelector('body').classList.remove('presenter-blackout');
+    }
   });
 
   socket.on('new question', function (data) {
