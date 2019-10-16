@@ -18,7 +18,14 @@
 
     // Label the buttons:
     document.querySelectorAll('button').forEach(function (el) {
-      el.innerText = data.responses[el.id];
+      el.innerText = data.responses[el.id] || null;
+
+      // If there's no response for a given key, disable the button. (i.e.
+      // true/false questions don't have 4 buttons.) This also would set the
+      // disabled flag appropriately if a new question is dispatched before the
+      // previous question is cleared.
+      el.disabled = Boolean(!data.responses[el.id])
+
       vote = null;
       el.classList.remove('active');
     });
@@ -39,6 +46,7 @@
     // Label the buttons:
     document.querySelectorAll('button').forEach(function (el) {
       el.innerText = el.id.toUpperCase();
+      el.disabled = false;
       vote = null;
       el.classList.remove('active');
     });

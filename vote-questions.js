@@ -36,8 +36,8 @@ module.exports = {
       responses: {
         a: 'True',
         b: 'False',
-        c: '?',
-        d: '?',
+        c: false,
+        d: false,
       },
       answer: 'a',
     },
@@ -49,8 +49,8 @@ module.exports = {
       responses: {
         a: 'True',
         b: 'False',
-        c: '?',
-        d: '?',
+        c: false,
+        d: false,
       },
       answer: 'b',
     },
@@ -73,8 +73,8 @@ module.exports = {
       responses: {
         a: 'Increased 74%',
         b: 'Decreased 74%',
-        c: '?',
-        d: '?',
+        c: false,
+        d: false,
       },
       answer: 'b',
     },
@@ -121,7 +121,7 @@ module.exports = {
   },
 
   deactivate() {
-    this.index = false;
+    this.active = false;
     this.events.emit('deactivate');
   },
 

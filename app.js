@@ -138,6 +138,26 @@ managers.on('connection', (socket) => {
     voteQuestions.activate(msg);
   });
 
+  socket.on('blackout', (data) => {
+    debug(`manager ordered blackout to ${data}`);
+    let success = null;
+
+    if (!voteQuestions.active && data) {
+      debug('sending BLO Q to presenters and managers');
+      success = voteStatus.setBlackout(true);
+    } else if (!data) {
+      // Turn blackout off
+      success = voteStatus.setBlackout(false);
+    } else {
+      debug('Cannot blackout presenter screen with a question open');
+    }
+
+    if (!success) {
+      // @TODO: Figuring out why would be good...
+      debug('Could not process blackout state change');
+    }
+  });
+
   socket.on('status', (msg) => {
     debug(`manager ordered to advance game status to ${msg}`);
     voteStatus.set(msg);
@@ -166,6 +186,10 @@ voteStatus.events.on('state change', (previous, next) => {
   presenters.emit('status', next);
   participants.emit('status', next);
   debuggers.emit('status', next);
+
+  if (voteStatus.blackout) {
+    voteStatus.setBlackout(false);
+  }
 
   if (next === 'close' || (voteQuestions.active && ['preshow', 'postshow'].includes(next))) {
     debug('status change to close');
@@ -199,6 +223,11 @@ voteQuestions.events.on('deactivate', () => {
 
 voteCount.events.on('clear', () => {
   managers.emit('update vote count', voteCount.report());
+});
+
+voteStatus.events.on('blackout', (state) => {
+  managers.emit('blackout', state);
+  presenters.emit('blackout', state);
 });
 
 module.exports = app;
