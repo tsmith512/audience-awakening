@@ -187,6 +187,10 @@ voteStatus.events.on('state change', (previous, next) => {
   participants.emit('status', next);
   debuggers.emit('status', next);
 
+  if (voteStatus.blackout) {
+    voteStatus.setBlackout(false);
+  }
+
   if (next === 'close' || (voteQuestions.active && ['preshow', 'postshow'].includes(next))) {
     debug('status change to close');
     voteCount.clear();
