@@ -1,5 +1,11 @@
 @import 'style.scss';
 
+.container {
+  display: block; // No flexbox / vertical-center here because of the jump when toolbars disappear
+  min-height: 0;
+  padding: 2em 1em;
+}
+
 .show-title {
   max-width: 25em;
 }
