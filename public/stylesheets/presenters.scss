@@ -35,6 +35,10 @@ body {
   width: 80vw;
 }
 
+h2 {
+  font-size: 2em;
+}
+
 dl {
   display: flex;
   flex-wrap: wrap;
@@ -58,7 +62,7 @@ dl {
   dt {
     flex: 1 0 auto;
     width: 25%;
-    font-size: 1.125em;
+    font-size: 1.25em;
     .status-vote & {
       width: 100%;
       text-align: center;
