@@ -3,7 +3,6 @@
 
   var socket = io('/manage');
   var status = null;
-  var questionActive = null;
   var blackout = false;
 
   // Initial status
@@ -17,7 +16,6 @@
   });
 
   socket.on('new question', function (data) {
-    questionActive = true;
     document.querySelectorAll('.question-trigger').forEach(function (element) {
       element.classList.remove('active');
     });
@@ -33,8 +31,6 @@
   });
 
   socket.on('clear question', function () {
-    questionActive = false;
-
     document.querySelectorAll('.question-trigger').forEach(function (element) {
       element.classList.remove('active');
     });

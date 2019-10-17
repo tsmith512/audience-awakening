@@ -7,7 +7,6 @@
   socket.on('status', function (data) {
     document.querySelector('body').className = document.querySelector('body').className.replace(/status-\w+/g, '');
     document.querySelector('body').classList.add('status-' + data);
-    status = data;
   });
 
   socket.on('blackout', function (data) {
