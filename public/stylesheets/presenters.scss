@@ -37,7 +37,8 @@ body {
 }
 
 #question-text {
-  font-size: 2em;
+  font-size: 2.5em;
+  margin: 0 auto 0.5em 0;
 }
 
 dl {
@@ -56,14 +57,14 @@ dl {
 
   dt, dd {
     margin: 0 0 0.5em 0;
-    padding: 0.5em;
+    padding: 0.375em;
     text-align: left;
   }
 
   dt {
     flex: 1 0 auto;
     width: 25%;
-    font-size: 1.25em;
+    font-size: 1.75em;
     .status-vote & {
       width: 100%;
       text-align: center;
@@ -98,8 +99,10 @@ dl {
 
   .results-display {
     display: block;
-    position: relative;
+    position: absolute;
     z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 
