@@ -20,12 +20,14 @@
       element.classList.remove('active');
     });
 
-    document.getElementById('question-' + data.key).classList.add('active');
-    document.getElementById('response-' + data.answer).classList.add('correct');
-
     document.querySelectorAll('.response-value').forEach(function (el) {
       el.innerText = data.responses[el.id.slice(-1)];
+      el.classList.remove('correct');
     });
+
+
+    document.getElementById('question-' + data.key).classList.add('active');
+    document.getElementById('response-' + data.answer).classList.add('correct');
 
     document.getElementById('results').disabled = false;
     document.getElementById('blackout').disabled = true;
