@@ -56,6 +56,11 @@ td {
   padding: 0.25em;
 }
 
+.response-value.correct {
+  background: #003300;
+  color: #99FF99;
+}
+
 .flex {
   display: flex;
   flex-wrap: nowrap;

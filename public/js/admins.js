@@ -21,6 +21,7 @@
     });
 
     document.getElementById('question-' + data.key).classList.add('active');
+    document.getElementById('response-' + data.answer).classList.add('correct');
 
     document.querySelectorAll('.response-value').forEach(function (el) {
       el.innerText = data.responses[el.id.slice(-1)];
@@ -33,6 +34,10 @@
   socket.on('clear question', function () {
     document.querySelectorAll('.question-trigger').forEach(function (element) {
       element.classList.remove('active');
+    });
+
+    document.querySelectorAll('.response-value').forEach(function (element) {
+      element.classList.remove('correct');
     });
 
     document.querySelectorAll('.response-value, .vote-count').forEach(function (element) {
