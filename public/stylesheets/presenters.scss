@@ -48,6 +48,7 @@ p {
 dl {
   display: flex;
   flex-wrap: wrap;
+  align-items: stretch;
 
   width: 80%;
   width: 80vw;
@@ -61,7 +62,6 @@ dl {
 
   dt, dd {
     margin: 0 0 0.5em 0;
-    padding: 0.375em;
     text-align: left;
   }
 
@@ -69,6 +69,8 @@ dl {
     flex: 1 0 auto;
     width: 25%;
     font-size: 1.75em;
+    align-self: center;
+
     .status-vote & {
       width: 100%;
       text-align: center;
@@ -83,6 +85,7 @@ dl {
     position: relative;
     flex: 3 0 auto;
     width: 75%;
+    padding: 0.125em 0.75em;
     background-color: #111;
     border: 1px solid #444;
     .status-vote & {
