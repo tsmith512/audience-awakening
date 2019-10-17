@@ -177,6 +177,12 @@ debuggers.on('connection', (socket) => {
     activeQuestion: voteQuestions.activeQuestion ? voteQuestions.getQuestion() : null,
     vote: voteCount.report(),
   });
+
+  socket.on('reload', () => {
+    managers.emit('reload');
+    presenters.emit('reload');
+    participants.emit('reload');
+  });
 });
 
 // Events for vote counts and questions

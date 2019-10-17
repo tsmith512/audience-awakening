@@ -66,6 +66,11 @@
     document.getElementById('answer-text').innerText = null;
   });
 
+  socket.on('reload', function () {
+    // eslint-disable-next-line no-restricted-globals
+    location.reload(true);
+  });
+
   document.querySelectorAll('button').forEach(function (el) {
     el.addEventListener('click', function () {
       if (vote) {

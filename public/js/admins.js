@@ -68,6 +68,11 @@
     }
   });
 
+  socket.on('reload', function () {
+    // eslint-disable-next-line no-restricted-globals
+    location.reload(true);
+  });
+
   document.getElementById('preshow').addEventListener('click', function () {
     socket.emit('status', 'preshow');
   });

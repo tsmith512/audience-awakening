@@ -13,4 +13,12 @@
       textarea.innerHTML = JSON.stringify(data, null, 4);
     });
   }
+
+  document.getElementById('reload').addEventListener('click', function () {
+    // eslint-disable-next-line no-alert
+    var choice = window.confirm('Are you sure you want all clients to reload this page?');
+    if (choice) {
+      socket.emit('reload');
+    }
+  });
 })();

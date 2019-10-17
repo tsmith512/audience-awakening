@@ -88,4 +88,9 @@
       el.innerText = null;
     });
   });
+
+  socket.on('reload', function () {
+    // eslint-disable-next-line no-restricted-globals
+    location.reload(true);
+  });
 })();
