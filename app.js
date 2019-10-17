@@ -236,4 +236,10 @@ voteStatus.events.on('blackout', (state) => {
   presenters.emit('blackout', state);
 });
 
+setInterval(() => {
+  participants.clients((err, clients) => {
+    managers.emit('update connection count', clients.length);
+  })
+}, 3000);
+
 module.exports = app;

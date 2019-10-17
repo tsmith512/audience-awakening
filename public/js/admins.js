@@ -51,6 +51,10 @@
     });
   });
 
+  socket.on('update connection count', function (data) {
+    document.getElementById('connections').innerText = data;
+  });
+
   socket.on('clear', function () {
     document.querySelectorAll('.question-trigger').forEach(function (element) {
       element.classList.remove('active');
