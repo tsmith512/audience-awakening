@@ -3,7 +3,6 @@
 
   var socket = io('/manage');
   var status = null;
-  var questionActive = null;
   var blackout = false;
 
   // Initial status
@@ -17,12 +16,12 @@
   });
 
   socket.on('new question', function (data) {
-    questionActive = true;
     document.querySelectorAll('.question-trigger').forEach(function (element) {
       element.classList.remove('active');
     });
 
     document.getElementById('question-' + data.key).classList.add('active');
+    document.getElementById('response-' + data.answer).classList.add('correct');
 
     document.querySelectorAll('.response-value').forEach(function (el) {
       el.innerText = data.responses[el.id.slice(-1)];
@@ -33,10 +32,12 @@
   });
 
   socket.on('clear question', function () {
-    questionActive = false;
-
     document.querySelectorAll('.question-trigger').forEach(function (element) {
       element.classList.remove('active');
+    });
+
+    document.querySelectorAll('.response-value').forEach(function (element) {
+      element.classList.remove('correct');
     });
 
     document.querySelectorAll('.response-value, .vote-count').forEach(function (element) {
@@ -55,6 +56,10 @@
     });
   });
 
+  socket.on('update connection count', function (data) {
+    document.getElementById('connections').innerText = data;
+  });
+
   socket.on('clear', function () {
     document.querySelectorAll('.question-trigger').forEach(function (element) {
       element.classList.remove('active');
@@ -70,6 +75,11 @@
     } else {
       document.querySelector('body').classList.remove('presenter-blackout');
     }
+  });
+
+  socket.on('reload', function () {
+    // eslint-disable-next-line no-restricted-globals
+    location.reload(true);
   });
 
   document.getElementById('preshow').addEventListener('click', function () {

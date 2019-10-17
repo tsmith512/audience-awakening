@@ -7,7 +7,6 @@
   socket.on('status', function (data) {
     document.querySelector('body').className = document.querySelector('body').className.replace(/status-\w+/g, '');
     document.querySelector('body').classList.add('status-' + data);
-    status = data;
   });
 
   socket.on('blackout', function (data) {
@@ -60,14 +59,18 @@
   });
 
   socket.on('results', function (data) {
-    console.log('received order to present findings ' + JSON.stringify(data));
-
+    // We need to total up all the votes so we know what percentage each took.
     var sum = 0;
+
+    // eslint-disable-next-line
     for (var key in data) {
-      if (data.hasOwnProperty(key)) {
+      if (Object.hasOwnProperty.call(data, key)) {
         sum += data[key];
       }
     }
+    // @TODO: I would like to do ^^ the right way instead of disabling eslint
+
+    console.log('received order to present findings ' + JSON.stringify(data));
 
     document.querySelectorAll('.results-display').forEach(function (el) {
       el.innerText = data[el.id.slice(-1)];
@@ -84,5 +87,10 @@
     document.querySelectorAll('#question-text, .response-option, .results-display').forEach(function (el) {
       el.innerText = null;
     });
+  });
+
+  socket.on('reload', function () {
+    // eslint-disable-next-line no-restricted-globals
+    location.reload(true);
   });
 })();

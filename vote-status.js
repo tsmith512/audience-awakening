@@ -22,7 +22,7 @@ module.exports = {
     const current = this.status;
 
     if (this.allowedValues.indexOf(change) === -1) {
-      throw `You messed that up, not allowable status ${change}`;
+      throw new Error(`You messed that up, not allowable status: ${JSON.stringify(change)}`);
     }
 
     this.status = change;

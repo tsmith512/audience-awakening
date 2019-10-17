@@ -174,8 +174,14 @@ debuggers.on('connection', (socket) => {
     status: voteStatus.get(),
     statusAllowed: voteStatus.allowedValues,
     questions: voteQuestions.listQuestions(),
-    activeQuestion: voteQuestions.activeQuestion ? voteQuestions.getQuestion() : null,
+    activeQuestion: voteQuestions.active ? voteQuestions.getQuestion() : null,
     vote: voteCount.report(),
+  });
+
+  socket.on('reload', () => {
+    managers.emit('reload');
+    presenters.emit('reload');
+    participants.emit('reload');
   });
 });
 
@@ -229,5 +235,11 @@ voteStatus.events.on('blackout', (state) => {
   managers.emit('blackout', state);
   presenters.emit('blackout', state);
 });
+
+setInterval(() => {
+  participants.clients((err, clients) => {
+    managers.emit('update connection count', clients.length);
+  })
+}, 3000);
 
 module.exports = app;
