@@ -174,7 +174,7 @@ debuggers.on('connection', (socket) => {
     status: voteStatus.get(),
     statusAllowed: voteStatus.allowedValues,
     questions: voteQuestions.listQuestions(),
-    activeQuestion: voteQuestions.activeQuestion ? voteQuestions.getQuestion() : null,
+    activeQuestion: voteQuestions.active ? voteQuestions.getQuestion() : null,
     vote: voteCount.report(),
   });
 
