@@ -88,8 +88,8 @@ dl {
     flex: 3 0 auto;
     width: 75%;
     padding: 0.125em 0.75em;
-    background-color: #111;
-    border: 1px solid #444;
+    background-color: #000;
+    border: 1px solid #26202b;
     .status-vote & {
       background-color: 0;
       display: none;
@@ -102,7 +102,7 @@ dl {
     top: 0;
     bottom: 0;
     left: 0;
-    background-color: #999;
+    background-color: #997fab;
     z-index: 1;
   }
 
@@ -123,10 +123,14 @@ dl {
 }
 
 .status-results .response-option.correct {
-  color: green;
+  color: #3F3;
   font-weight: bold;
 }
 
-.status-results .response-option.correct + dd .results-background {
-  background-color: #393;
+.status-results .response-option.correct + dd {
+  border-color: #030;
+
+  .results-background {
+    background-color: #060;
+  }
 }

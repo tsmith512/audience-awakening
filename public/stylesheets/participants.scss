@@ -8,6 +8,8 @@ body {
 
 .container {
   display: block; // No flexbox / vertical-center here because of the jump when toolbars disappear
+  max-width: 40em;
+  margin: 0 auto;
   min-height: 0;
   padding: 2em 1em;
 }
