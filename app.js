@@ -81,6 +81,8 @@ const connectionStartup = (socket) => {
 
   if (voteQuestions.active) {
     socket.emit('new question', voteQuestions.getQuestion());
+  } else {
+    socket.emit('clear question');
   }
 };
 
