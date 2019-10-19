@@ -6,8 +6,8 @@ module.exports = {
 
   questions: [
     {
-      title: 'Example Question Placeholder',
-      question: '(Placeholder) Example question to be used for the preshow demo.',
+      title: 'Example Question',
+      question: 'Placeholder Example',
       responses: {
         a: 'A',
         b: 'B',
@@ -17,7 +17,7 @@ module.exports = {
       answer: 'a',
     },
     {
-      title: 'Texas ranking in 2016 teen birth rates',
+      title: '2016 Texas rank on teen birth rate',
       question: 'In 2016, how did Texas rank nationally for teen birth rates among females 15-19?',
       citation: 'According to the US Department of Health and Human Services.',
       responses: {
@@ -29,7 +29,7 @@ module.exports = {
       answer: 'c',
     },
     {
-      title: 'T/F: 2018 number of children removed by CPS',
+      title: 'T/F: 2018 number of children removed for absue',
       question: 'In 2018, Child Protective Service removed over 16,000 Texas’ children as a result of abuse/neglect. True or False?',
       citation: 'According to Texas Department of Family and Protective Services.',
       commentary: 'True. In 2018, CPS removed 16,221 children as a result of abuse/neglect.',
@@ -55,7 +55,7 @@ module.exports = {
       answer: 'b',
     },
     {
-      title: 'Percentage of TX HS who experience suicidal ideation',
+      title: '2017 TX% HS w depression who experience suicidal ideation',
       question: 'In a 2017 survey, 37% of Texas high schoolers reported extended depression symptoms. What percentage of these have seriously considered suicide?',
       citation: 'According to the CCDC\'s 2017 Youth Risk Behavior Survey.',
       commentary: 'Suicide is the 2nd leading cause of death for Texans 15-24.',
