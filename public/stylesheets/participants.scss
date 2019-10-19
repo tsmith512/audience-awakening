@@ -1,5 +1,11 @@
 @import 'style.scss';
 
+body {
+  font-family: "Gotham Narrow SSm A", "Gotham Narrow SSm B";
+  font-style: normal;
+  font-weight: 500;
+}
+
 .container {
   display: block; // No flexbox / vertical-center here because of the jump when toolbars disappear
   min-height: 0;
@@ -7,7 +13,7 @@
 }
 
 body {
-  background: #18141b url(/gfx/participants-background.gif) center center no-repeat;
+  background: #1d1820 url(/gfx/participants-background.gif) center center no-repeat;
 }
 
 .show-title {
@@ -15,7 +21,9 @@ body {
 }
 
 h2 {
-  font-size: 1.375em;
+  text-align: left;
+  margin: 0.75em auto;
+  font-size: 1.5em;
 }
 
 .results-text {
@@ -49,6 +57,10 @@ h2 {
     margin: 0.125em;
     padding: 0.5em;
     font-size: 2em;
+
+    font-family: "Surveyor SSm A", "Surveyor SSm B";
+    font-style: normal;
+    font-weight: 700;
 
     &:empty,
     &:disabled {

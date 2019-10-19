@@ -1,5 +1,11 @@
 @import 'style.scss';
 
+body {
+  font-family: "Gotham Narrow SSm A", "Gotham Narrow SSm B";
+  font-style: normal;
+  font-weight: 500;
+}
+
 .blackout-container {
   position: absolute;
   top: 0;
@@ -46,6 +52,10 @@ dl {
   width: 80vw;
   font-size: 1.5em;
   margin: 0 auto;
+
+  font-family: "Gotham Narrow SSm A", "Gotham Narrow SSm B";
+  font-style: normal;
+  font-weight: 800;
 
   .status-vote & {
     display: block;
