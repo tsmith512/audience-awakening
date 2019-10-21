@@ -6,8 +6,8 @@ module.exports = {
 
   questions: [
     {
-      title: 'Example Question Placeholder',
-      question: '(Placeholder) Example question to be used for the preshow demo.',
+      title: 'Example Question',
+      question: 'Placeholder Example',
       responses: {
         a: 'A',
         b: 'B',
@@ -17,8 +17,8 @@ module.exports = {
       answer: 'a',
     },
     {
-      title: 'Texas ranking in 2016 teen birth rates',
-      question: 'In 2016, where did Texas rank among the nation in teen birth rates among females age 15-19 (with 1 representing the highest rate and 50 representing the lowest rate)?',
+      title: '2016 Texas rank on teen birth rate',
+      question: 'In 2016, how did Texas rank nationally for teen birth rates among females 15-19?',
       citation: 'According to the US Department of Health and Human Services.',
       responses: {
         a: '34th',
@@ -29,7 +29,7 @@ module.exports = {
       answer: 'c',
     },
     {
-      title: 'T/F: 2018 number of children removed by CPS',
+      title: 'T/F: 2018 number of children removed for absue',
       question: 'In 2018, Child Protective Service removed over 16,000 Texas’ children as a result of abuse/neglect. True or False?',
       citation: 'According to Texas Department of Family and Protective Services.',
       commentary: 'True. In 2018, CPS removed 16,221 children as a result of abuse/neglect.',
@@ -55,9 +55,10 @@ module.exports = {
       answer: 'b',
     },
     {
-      title: 'Percentage of TX HS who experience suicidal ideation',
-      question: 'Suicide is the second leading cause of death in Texans ages 15 to 24. In a recent survey, 37 percent of Texas high school students reported feeling sad or hopeless for weeks on end. What percentage of these students have seriously considered suicide?',
+      title: '2017 TX% HS w depression who experience suicidal ideation',
+      question: 'In a 2017 survey, 37% of Texas high schoolers reported extended depression symptoms. What percentage of these have seriously considered suicide?',
       citation: 'According to the CCDC\'s 2017 Youth Risk Behavior Survey.',
+      commentary: 'Suicide is the 2nd leading cause of death for Texans 15-24.',
       responses: {
         a: '12%',
         b: '18%',
@@ -68,7 +69,7 @@ module.exports = {
     },
     {
       title: 'T/F: Abortion rate decrease \'88 &rarr; \' 13',
-      question: 'From 1988-2013, the rate of teen abortions in Texas has had a 74% change in that time period. Has it increased or decreased over that time period?',
+      question: 'From 1988-2013, the rate of teen abortions in Texas has changed by 74%. Has it increased or decreased over that time period?',
       citation: 'According to the US Department of Health and Human Services.',
       responses: {
         a: 'Increased 74%',

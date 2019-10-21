@@ -20,6 +20,16 @@ header {
   }
 }
 
+
+.voting-buttons {
+  .status-vote & { display: inline-block; }
+
+  button {
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+  }
+}
+
 iframe {
   width: 360px;
   height: 680px;

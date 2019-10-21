@@ -65,6 +65,45 @@ When the service running, visit:
   development and testing. There's also a link to pull a data dump of current
   state information.
 
+## Stage Manager Instructions
+
+1. Preshow, open the `/sm` display and activate the **Preshow** cue.
+  - Optionally, use **Projector Blackout** if the projector needs to display dark.
+2. For a question cue, click the numbered button for the question that should be
+  dispatched.
+3. To display the results of a poll, click **Present Results**
+4. After a delay, click **Close Question** to encourage the audience to turn
+  their screens off again.
+  - Optionally, use **Projector Blackout**
+  - I'd recommend leaving the state on **Close** until the next question.
+5. Repeat from step 2 as needed.
+6. Be sure to end on the **Postshow** cue. This page will still be open on
+   participants' phones when they first turn them on after the show, this is a
+   "thank you" message.
+  - Keep **Postshow** engaged until time to repeat from step 1 at the next
+    performance.
+
+### Troubleshooting
+
+If something goes wrong:
+
+- Given how fast this application was built, it was primarily tested on Chrome.
+  If you're using a different browser, give Chrome a shot.
+- If the presenter/projector screen lags:
+  - Consider what browser it is using.
+  - Make sure it is plugged in (battery modes can throttle page activity)
+  - Try clicking into / focusing the window.
+  - Reload the presenter screen.
+  - If possible, connect the presenter screen to the internet using ethernet
+    instead of the venue's wifi.
+- Visit the `/debug` page to see a sample participant, presenter, and admin
+  display.
+  - Use the **Data dump** link on the debug display to get a status report of
+    the active data in the system.
+  - Use the **Reload all clients** button on the debug display to force all
+    clients to reload the page. This is a heavy hammer!
+- _@TODO: Is there a way to restart the dyno?_
+
 ## Editing
 
 Currently, questions are stored in [`vote-questions.js`][VQ] directly.

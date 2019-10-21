@@ -81,6 +81,8 @@ const connectionStartup = (socket) => {
 
   if (voteQuestions.active) {
     socket.emit('new question', voteQuestions.getQuestion());
+  } else {
+    socket.emit('clear question');
   }
 };
 
@@ -183,6 +185,13 @@ debuggers.on('connection', (socket) => {
     presenters.emit('reload');
     participants.emit('reload');
   });
+
+  socket.on('vote', (msg) => {
+    debug(`debugger vote for ${msg}`);
+    voteCount.vote(msg);
+    managers.emit('update vote count', voteCount.report());
+  });
+
 });
 
 // Events for vote counts and questions

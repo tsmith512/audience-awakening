@@ -1,11 +1,28 @@
 @import 'style.scss';
 
+body {
+  background: #1d1820 url(/gfx/participants-background.gif) center center no-repeat;
+  font-family: "Gotham Narrow SSm A", "Gotham Narrow SSm B";
+  font-style: normal;
+  font-weight: 500;
+}
+
+.container {
+  display: block; // No flexbox / vertical-center here because of the jump when toolbars disappear
+  max-width: 40em;
+  margin: 0 auto;
+  min-height: 0;
+  padding: 2em 1em;
+}
+
 .show-title {
   max-width: 25em;
 }
 
 h2 {
-  font-size: 1.375em;
+  text-align: left;
+  margin: 0.75em auto;
+  font-size: 1.5em;
 }
 
 .results-text {
@@ -19,11 +36,10 @@ h2 {
 .answer-text {
   color: #009900;
   font-size: 1.5em;
-  font-weight: bold;
+  font-weight: 800;
 }
 
 .citation-text {
-  font-style: italic;
   font-size: 0.875em;
 }
 
@@ -39,6 +55,7 @@ h2 {
     margin: 0.125em;
     padding: 0.5em;
     font-size: 2em;
+    font-weight: 800;
 
     &:empty,
     &:disabled {

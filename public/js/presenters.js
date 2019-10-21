@@ -32,6 +32,12 @@
 
       // In case this wasn't properly scrubbed in a jump cue.
       el.classList.remove('correct');
+      el.classList.remove('disabled');
+
+      if (!Boolean(data.responses[el.id.slice(-1)])) {
+        el.classList.add('disabled');
+      }
+
 
       if (data.answer === el.id.slice(-1)) {
         el.classList.add('correct');
@@ -51,6 +57,7 @@
     document.querySelectorAll('.response-option, .results-display').forEach(function (el) {
       el.innerText = null;
       el.classList.remove('correct');
+      el.classList.remove('disabled');
     });
 
     document.querySelectorAll('.results-background').forEach(function (el) {
