@@ -30,7 +30,7 @@ module.exports = {
     },
     {
       title: 'T/F: 2018 number of children removed for absue',
-      question: 'In 2018, Child Protective Service removed over 16,000 Texas’ children as a result of abuse/neglect. True or False?',
+      question: 'In 2018, Child Protective Service removed over 16,000 Texas children as a result of abuse/neglect. True or False?',
       citation: 'According to Texas Department of Family and Protective Services.',
       commentary: 'True. In 2018, CPS removed 16,221 children as a result of abuse/neglect.',
       responses: {
