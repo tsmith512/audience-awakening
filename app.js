@@ -40,7 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Twig templates. The data exchanges are all done on the Sockets.
 app.get('/', (req, res) => res.render('participant', { title: 'Participant Display' }));
 
-app.get('/present', (req, res) => res.render('present', { title: 'Projector Display' }));
+app.get('/present', (req, res) => res.render('present', { title: 'Projector Display', website: process.env.PROD_URL }));
 
 app.get('/sm', (req, res) => res.render('admin', { title: 'Stage Manager Display', questions: voteQuestions.listQuestionsByTitle() }));
 

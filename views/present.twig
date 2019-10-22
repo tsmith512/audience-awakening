@@ -8,6 +8,9 @@
 {% block body %}
   <section class="status-dependent preshow">
     <h1 class="show-title">Spring Awakening</h1>
+    {% if website %}
+      <p>Please go to {{ website }} to participate in this interactive production.</p>
+    {% endif %}
   </section>
 
   <section class="status-dependent vote results">
