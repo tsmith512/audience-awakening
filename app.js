@@ -38,11 +38,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Set up routes for the appliation displays. Simple handlers, just to output
 // Twig templates. The data exchanges are all done on the Sockets.
-app.get('/', (req, res) => res.render('participant', { title: 'Participant Display' }));
+app.get('/', (req, res) => res.render('participant', { title: 'Spring Awakening' }));
 
-app.get('/present', (req, res) => res.render('present', { title: 'Projector Display', website: process.env.PROD_URL }));
+app.get('/present', (req, res) => res.render('present', { title: 'Spring Awakening | Projector', website: process.env.PROD_URL }));
 
-app.get('/sm', (req, res) => res.render('admin', { title: 'Stage Manager Display', questions: voteQuestions.listQuestionsByTitle() }));
+app.get('/sm', (req, res) => res.render('admin', { title: 'Spring Awakening | Stage Manager', questions: voteQuestions.listQuestionsByTitle() }));
 
 app.get('/debug', (req, res) => res.render('debug', { title: '3-Up Testing Display' }));
 
