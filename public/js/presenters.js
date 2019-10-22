@@ -34,6 +34,7 @@
       el.classList.remove('correct');
       el.classList.remove('disabled');
 
+      // eslint-disable-next-line no-extra-boolean-cast
       if (!Boolean(data.responses[el.id.slice(-1)])) {
         el.classList.add('disabled');
       }
@@ -85,14 +86,6 @@
 
     document.querySelectorAll('.results-background').forEach(function (el) {
       el.style.width = ((data[el.id.slice(-1)] / sum) * 100) + '%';
-    });
-  });
-
-  socket.on('clear', function () {
-    console.log('received order to clear display');
-
-    document.querySelectorAll('#question-text, .response-option, .results-display').forEach(function (el) {
-      el.innerText = null;
     });
   });
 

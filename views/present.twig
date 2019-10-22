@@ -8,6 +8,9 @@
 {% block body %}
   <section class="status-dependent preshow">
     <h1 class="show-title">Spring Awakening</h1>
+    {% if website %}
+      <p>Please go to {{ website }} to participate in this interactive production.</p>
+    {% endif %}
   </section>
 
   <section class="status-dependent vote results">
@@ -43,7 +46,7 @@
   </section>
 
   <section class="status-dependent close">
-    <p>Please turn off your screen and enjoy the continuation of the show.</p>
+    <p>Thank you for participating. Please turn off your screen as we continue with the show.</p>
   </section>
 
   <section class="status-dependent postshow">

@@ -2,17 +2,14 @@
   'use strict';
 
   var socket = io('/manage');
-  var status = null;
   var blackout = false;
 
   // Initial status
   document.getElementById('results').disabled = true;
-  document.getElementById('blackout').disabled = false;
 
   socket.on('status', function (data) {
     document.querySelector('body').className = document.querySelector('body').className.replace(/status-\w+/g, '');
     document.querySelector('body').classList.add('status-' + data);
-    status = data;
   });
 
   socket.on('new question', function (data) {
@@ -30,7 +27,6 @@
     document.getElementById('response-' + data.answer).classList.add('correct');
 
     document.getElementById('results').disabled = false;
-    document.getElementById('blackout').disabled = true;
   });
 
   socket.on('clear question', function () {
@@ -47,7 +43,6 @@
     });
 
     document.getElementById('results').disabled = true;
-    document.getElementById('blackout').disabled = false;
   });
 
   socket.on('update vote count', function (data) {
@@ -97,17 +92,8 @@
   });
 
   document.getElementById('blackout').addEventListener('click', function () {
-    // This logic matches server-side in voteStatus. We can only black out the
-    // projector when it isn't showing something important (consider what's also
-    // on the participant screens in other states...)
-    if (['preshow', 'close', 'postshow'].includes(status)) {
-      // Toggle the blackout status.
-      socket.emit('blackout', !blackout);
-    } else {
-      // eslint-disable-next-line no-alert
-      alert('Close the question before giving the presenter screens a blackout cue. Presenter can blackout during preshow, question close, or postshow.');
-      console.log(status);
-    }
+    // Toggle the blackout status.
+    socket.emit('blackout', !blackout);
   });
 
   document.getElementById('postshow').addEventListener('click', function () {

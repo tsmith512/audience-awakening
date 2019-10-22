@@ -1,7 +1,7 @@
 @import 'style.scss';
 
 body {
-  font-family: "Gotham Narrow SSm A", "Gotham Narrow SSm B";
+  font-family: "Gotham Narrow SSm A", "Gotham Narrow SSm B", Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: 500;
 }
@@ -89,7 +89,7 @@ dl {
     width: 75%;
     padding: 0.125em 0.75em;
     background-color: #000;
-    border: 1px solid #26202b;
+    border: 1px solid #333;
     .status-vote & {
       background-color: 0;
       display: none;
@@ -102,7 +102,7 @@ dl {
     top: 0;
     bottom: 0;
     left: 0;
-    background-color: #997fab;
+    background-color: #666;
     z-index: 1;
   }
 
@@ -112,6 +112,7 @@ dl {
     z-index: 10;
     top: 50%;
     transform: translateY(-50%);
+    color: #000;
   }
 }
 
@@ -122,15 +123,19 @@ dl {
   text-align: right;
 }
 
+.status-results .response-option {
+  font-weight: 500;
+}
+
 .status-results .response-option.correct {
-  color: #3F3;
-  font-weight: bold;
+  color: #FFF;
+  font-weight: 800;
 }
 
 .status-results .response-option.correct + dd {
-  border-color: #030;
+  border-color: #CCC;
 
   .results-background {
-    background-color: #060;
+    background-color: #FFF;
   }
 }

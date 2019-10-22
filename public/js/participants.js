@@ -8,7 +8,7 @@
     document.querySelector('body').className = 'status-' + data;
   });
 
-  // @TODO: These three socket event handlers are basically the same, consolidate!
+  // @TODO: Handlers for 'new question' and 'clear question' overlap a lot. DRY.
 
   socket.on('new question', function (data) {
     console.log('received new question' + JSON.stringify(data));
@@ -24,6 +24,7 @@
       // true/false questions don't have 4 buttons.) This also would set the
       // disabled flag appropriately if a new question is dispatched before the
       // previous question is cleared.
+      // eslint-disable-next-line no-extra-boolean-cast
       el.disabled = !(Boolean(data.responses[el.id]));
 
       vote = null;
@@ -47,18 +48,6 @@
     document.querySelectorAll('button').forEach(function (el) {
       el.innerText = el.id.toUpperCase();
       el.disabled = false;
-      vote = null;
-      el.classList.remove('active');
-    });
-
-    document.getElementById('answer-text').innerText = null;
-  });
-
-  socket.on('clear', function () {
-    document.getElementById('question-text').innerText = null;
-
-    document.querySelectorAll('button').forEach(function (el) {
-      el.innerText = el.id.length ? el.id.toUpperCase() : null;
       vote = null;
       el.classList.remove('active');
     });

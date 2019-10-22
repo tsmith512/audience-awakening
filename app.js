@@ -38,11 +38,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Set up routes for the appliation displays. Simple handlers, just to output
 // Twig templates. The data exchanges are all done on the Sockets.
-app.get('/', (req, res) => res.render('participant', { title: 'Participant Display' }));
+app.get('/', (req, res) => res.render('participant', { title: 'Spring Awakening' }));
 
-app.get('/present', (req, res) => res.render('present', { title: 'Projector Display' }));
+app.get('/present', (req, res) => res.render('present', { title: 'Spring Awakening | Projector', website: process.env.PROD_URL }));
 
-app.get('/sm', (req, res) => res.render('admin', { title: 'Stage Manager Display', questions: voteQuestions.listQuestionsByTitle() }));
+app.get('/sm', (req, res) => res.render('admin', { title: 'Spring Awakening | Stage Manager', questions: voteQuestions.listQuestionsByTitle() }));
 
 app.get('/debug', (req, res) => res.render('debug', { title: '3-Up Testing Display' }));
 
@@ -142,21 +142,14 @@ managers.on('connection', (socket) => {
 
   socket.on('blackout', (data) => {
     debug(`manager ordered blackout to ${data}`);
-    let success = null;
 
-    if (!voteQuestions.active && data) {
+    if (data) {
       debug('sending BLO Q to presenters and managers');
-      success = voteStatus.setBlackout(true);
+      voteStatus.setBlackout(true);
     } else if (!data) {
       // Turn blackout off
-      success = voteStatus.setBlackout(false);
-    } else {
-      debug('Cannot blackout presenter screen with a question open');
-    }
-
-    if (!success) {
-      // @TODO: Figuring out why would be good...
-      debug('Could not process blackout state change');
+      debug('cancelling BLO Q to presenters and managers');
+      voteStatus.setBlackout(false);
     }
   });
 
@@ -191,7 +184,6 @@ debuggers.on('connection', (socket) => {
     voteCount.vote(msg);
     managers.emit('update vote count', voteCount.report());
   });
-
 });
 
 // Events for vote counts and questions
@@ -248,7 +240,7 @@ voteStatus.events.on('blackout', (state) => {
 setInterval(() => {
   participants.clients((err, clients) => {
     managers.emit('update connection count', clients.length);
-  })
+  });
 }, 3000);
 
 module.exports = app;
