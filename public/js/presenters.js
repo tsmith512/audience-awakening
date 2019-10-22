@@ -89,14 +89,6 @@
     });
   });
 
-  socket.on('clear', function () {
-    console.log('received order to clear display');
-
-    document.querySelectorAll('#question-text, .response-option, .results-display').forEach(function (el) {
-      el.innerText = null;
-    });
-  });
-
   socket.on('reload', function () {
     // eslint-disable-next-line no-restricted-globals
     location.reload(true);

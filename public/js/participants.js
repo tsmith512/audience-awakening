@@ -8,7 +8,7 @@
     document.querySelector('body').className = 'status-' + data;
   });
 
-  // @TODO: These three socket event handlers are basically the same, consolidate!
+  // @TODO: Handlers for 'new question' and 'clear question' overlap a lot. DRY.
 
   socket.on('new question', function (data) {
     console.log('received new question' + JSON.stringify(data));
@@ -48,18 +48,6 @@
     document.querySelectorAll('button').forEach(function (el) {
       el.innerText = el.id.toUpperCase();
       el.disabled = false;
-      vote = null;
-      el.classList.remove('active');
-    });
-
-    document.getElementById('answer-text').innerText = null;
-  });
-
-  socket.on('clear', function () {
-    document.getElementById('question-text').innerText = null;
-
-    document.querySelectorAll('button').forEach(function (el) {
-      el.innerText = el.id.length ? el.id.toUpperCase() : null;
       vote = null;
       el.classList.remove('active');
     });
