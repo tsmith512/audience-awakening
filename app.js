@@ -184,7 +184,6 @@ debuggers.on('connection', (socket) => {
     voteCount.vote(msg);
     managers.emit('update vote count', voteCount.report());
   });
-
 });
 
 // Events for vote counts and questions
@@ -241,7 +240,7 @@ voteStatus.events.on('blackout', (state) => {
 setInterval(() => {
   participants.clients((err, clients) => {
     managers.emit('update connection count', clients.length);
-  })
+  });
 }, 3000);
 
 module.exports = app;

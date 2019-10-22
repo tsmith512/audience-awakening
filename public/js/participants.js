@@ -24,6 +24,7 @@
       // true/false questions don't have 4 buttons.) This also would set the
       // disabled flag appropriately if a new question is dispatched before the
       // previous question is cleared.
+      // eslint-disable-next-line no-extra-boolean-cast
       el.disabled = !(Boolean(data.responses[el.id]));
 
       vote = null;

@@ -26,7 +26,7 @@ module.exports = {
     }
 
     this.status = change;
-
+    debug(`Updating game status from ${current} to ${change}`);
     this.events.emit('state change', current, change);
   },
 
@@ -40,12 +40,14 @@ module.exports = {
     if (q) {
       // Blackout is requested
       this.blackout = true;
+      debug('Activating blackout flag');
       this.events.emit('blackout', true);
       return true;
     }
 
     // Blackout is being turned off
     this.blackout = false;
+    debug('Deactivating blackout flag');
     this.events.emit('blackout', false);
     return true;
   },

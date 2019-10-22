@@ -34,6 +34,7 @@
       el.classList.remove('correct');
       el.classList.remove('disabled');
 
+      // eslint-disable-next-line no-extra-boolean-cast
       if (!Boolean(data.responses[el.id.slice(-1)])) {
         el.classList.add('disabled');
       }
