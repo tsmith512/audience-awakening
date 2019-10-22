@@ -37,22 +37,17 @@ module.exports = {
   // Argument is whether to turn BLO on or off.
   // Return is whether or not that change was accepted.
   setBlackout(q) {
-    if (q && ['preshow', 'close', 'postshow'].includes(this.status)) {
-      // Blackout is allowable and requested
+    if (q) {
+      // Blackout is requested
       this.blackout = true;
       this.events.emit('blackout', true);
       return true;
     }
 
-    if (!q) {
-      // Blackout is being turned off, which is always okay.
-      this.blackout = false;
-      this.events.emit('blackout', false);
-      return true;
-    }
-
-    debug(`Blackout q is ${(q) ? 'BLO' : 'disable'} but status is ${this.status}`);
-    return false;
+    // Blackout is being turned off
+    this.blackout = false;
+    this.events.emit('blackout', false);
+    return true;
   },
 
   events: new EventEmitter(),

@@ -142,21 +142,14 @@ managers.on('connection', (socket) => {
 
   socket.on('blackout', (data) => {
     debug(`manager ordered blackout to ${data}`);
-    let success = null;
 
-    if (!voteQuestions.active && data) {
+    if (data) {
       debug('sending BLO Q to presenters and managers');
-      success = voteStatus.setBlackout(true);
+      voteStatus.setBlackout(true);
     } else if (!data) {
       // Turn blackout off
-      success = voteStatus.setBlackout(false);
-    } else {
-      debug('Cannot blackout presenter screen with a question open');
-    }
-
-    if (!success) {
-      // @TODO: Figuring out why would be good...
-      debug('Could not process blackout state change');
+      debug('cancelling BLO Q to presenters and managers');
+      voteStatus.setBlackout(false);
     }
   });
 
